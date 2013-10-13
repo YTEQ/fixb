@@ -3,7 +3,7 @@ fix4j
 
 Fix4j is a library for Java/FIX bindings that simplifies serialization/deserialization of Java objects to/from FIX protocol messages. The bindings are defined using Java annotations.
 
-Example:
+Example (tags are fictitious):
 ```java
     @FixMessage(type = "Q")
     public class FxQuote extends BaseQuote {
@@ -13,13 +13,13 @@ Example:
         @FixField(tag = 40)
         private final Side side;
 
-        @FixField(tag = SYMBOL)
+        @FixField(tag = 12)
         private final String symbol;
 
-        @FixGroup(tag = AMOUNT_GR, componentTag = AMOUNT, component = Integer.class)
+        @FixGroup(tag = 13, componentTag = 14, component = Integer.class)
         private final List amounts;
 
-        @FixGroup(tag = PARAM_GR, component = Params.class)
+        @FixGroup(tag = 20, component = Params.class)
         private final List<Params> paramsList;
 
         @FixBlock
