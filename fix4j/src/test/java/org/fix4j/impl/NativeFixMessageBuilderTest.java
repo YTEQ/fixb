@@ -16,11 +16,14 @@
 
 package org.fix4j.impl;
 
+import org.fix4j.FixConstants;
+import org.fix4j.FixException;
 import org.joda.time.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
+import static org.fix4j.FixConstants.BEGIN_STRING_TAG;
 import static org.fix4j.test.TestHelper.fix;
 import static org.junit.Assert.assertTrue;
 
@@ -31,6 +34,7 @@ public class NativeFixMessageBuilderTest {
 
     @Test
     public void testBuild() throws Exception {
+        builder.setField(BEGIN_STRING_TAG, "FIX.5.0");
         builder.setField(11, 'a');
         builder.setField(12, 1);
         builder.setField(13, 11.00);
@@ -41,11 +45,24 @@ public class NativeFixMessageBuilderTest {
 
         final String fix = builder.build();
 
-        assertTrue(fix.matches(fix("11=a", "12=1", "13=11.0", "14=Y", "15=1.23", "16=string", "17=20120201-12:00:00", "10=[0-9]+")));
+        System.out.println("fix 1 = " + fix);
+
+        assertTrue("Fix message is incorrect", fix.matches(fix(
+                "8=FIX.5.0",
+                "9=62",
+                "11=a",
+                "12=1",
+                "13=11.0",
+                "14=Y",
+                "15=1.23",
+                "16=string",
+                "17=20120201-12:00:00",
+                "10=[0-9]+")));
     }
 
     @Test
     public void testBuildWithJodaTime() throws Exception {
+        builder.setField(BEGIN_STRING_TAG, "FIX.5.0");
         builder.setField(11, new LocalDate("2012-02-01"));
         builder.setField(12, new LocalTime("15:15:15.123"));
         builder.setField(13, new LocalDateTime("2012-02-01"));
@@ -53,13 +70,23 @@ public class NativeFixMessageBuilderTest {
         builder.setField(15, new Instant("2012-02-01T01:01:01"));
 
         final String fix = builder.build();
-        System.out.println(fix);
-        assertTrue(fix.matches(fix(
+
+        System.out.println("fix 2 = " + fix);
+
+        assertTrue("Fix message is incorrect", fix.matches(fix(
+                "8=FIX.5.0",
+                "9=91",
                 "11=20120201",
                 "12=15:15:15.123",
                 "13=20120201-12:00:00",
                 "14=20120131-11:00:00",
                 "15=20120201-01:01:01",
                 "10=[0-9]+")));
+    }
+
+    @Test(expected = FixException.class)
+    public void testThrowsExceptionWhenBeginStringIsNotSet() throws Exception {
+        builder.setField(123, "any value");
+        builder.build();
     }
 }

@@ -111,9 +111,8 @@ public abstract class AbstractMetaFixAdapter<T, M> implements FixAdapter<T, M> {
     public M toFix(T data) {
         final FixMessageMeta<?> fixMeta = getFixMetaForClass((Class<T>) data.getClass());
 
-        final FixMessageBuilder<M> builder = fixMessageBuilder.create().setField(FixConstants.BEGIN_STRING_TAG,
-                protocolVersion,
-                true);
+        final FixMessageBuilder<M> builder = fixMessageBuilder.create()
+                .setField(FixConstants.BEGIN_STRING_TAG, protocolVersion, true);
 
         for (FixFieldMeta fieldMeta : fixMeta.getFields()) {
             if (fieldMeta.isGroup()) {

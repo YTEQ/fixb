@@ -17,7 +17,7 @@
 package org.fix4j.impl;
 
 /**
- * Literals used in FIX message formatting, i.e. date/time formats, field delimite
+ * Literals used in FIX message formatting, i.e. date/time formats, field delimiter.
  *
  * @author vladyslav.yatsenko
  */

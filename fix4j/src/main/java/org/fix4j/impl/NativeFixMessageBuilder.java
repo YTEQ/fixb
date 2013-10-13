@@ -16,6 +16,7 @@
 
 package org.fix4j.impl;
 
+import org.fix4j.FixException;
 import org.fix4j.FixMessageBuilder;
 import org.fix4j.meta.FixFieldMeta;
 import org.fix4j.meta.FixGroupMeta;
@@ -28,7 +29,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import static org.fix4j.FixConstants.CHECKSUM_TAG;
+import static org.fix4j.FixConstants.*;
 import static org.fix4j.impl.FormatConstants.*;
 
 /**
@@ -40,6 +41,7 @@ import static org.fix4j.impl.FormatConstants.*;
 public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
     private final StringBuilder head = new StringBuilder();
     private final StringBuilder body;
+    private String beginString;
 
     public static final class Factory implements FixMessageBuilder.Factory<String, NativeFixMessageBuilder> {
 
@@ -56,7 +58,15 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
 
     @Override
     public String build() {
-        return appendTag(head.append(body), CHECKSUM_TAG).append(generateCheckSum(head)).toString();
+        if (beginString == null) {
+            throw new FixException("BeginString (tag " + BEGIN_STRING_TAG + ") is missing");
+        }
+
+        final StringBuilder headAndBody = head.append(body);
+        final int bodyLength = headAndBody.length();
+        final StringBuilder beginString = appendTag(new StringBuilder(bodyLength + 10), BEGIN_STRING_TAG).append(this.beginString).append(SOH);
+        final StringBuilder message = appendTag(beginString, BODY_LENGTH_TAG).append(bodyLength).append(SOH).append(headAndBody);
+        return appendTag(message, CHECKSUM_TAG).append(generateCheckSum(message)).toString();
     }
 
     @Override
@@ -125,7 +135,12 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
 
     @Override
     public FixMessageBuilder<String> setField(int tag, String value, boolean header) {
-        appendTag(tag, header).append(value).append(SOH);
+        switch (tag) {
+            case BEGIN_STRING_TAG:
+                beginString = value; break;
+            default:
+                appendTag(tag, header).append(value).append(SOH);
+        }
         return this;
     }
 
