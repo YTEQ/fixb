@@ -87,7 +87,7 @@ public class FixBlockMeta<T> {
     }
 
     private <T> T createModel(Constructor<T> constr, Map<FixFieldMeta, Object> values, int level) throws Exception {
-        List<Object> params = new ArrayList<>(constr.getParameterTypes().length);
+        List<Object> params = new ArrayList<Object>(constr.getParameterTypes().length);
 
         //keep array so we can go back an index...
         FixFieldMeta[] keys = new FixFieldMeta[values.keySet().size()];
@@ -131,7 +131,7 @@ public class FixBlockMeta<T> {
     }
 
     private <T> T createModel(Class<T> clazz, Map<FixFieldMeta, Object> values, int level) throws Exception {
-        Map<Field, Object> params = new HashMap<>(clazz.getDeclaredFields().length);
+        Map<Field, Object> params = new HashMap<Field, Object>(clazz.getDeclaredFields().length);
 
         FixFieldMeta[] keys = new FixFieldMeta[values.keySet().size()];
         values.keySet().toArray(keys);
@@ -176,7 +176,7 @@ public class FixBlockMeta<T> {
     private <T> T instantiate(Class<T> cls, Map<Field, ? extends Object> args) throws Exception {
         // Create instance of the given class
         final Constructor<T> constr = (Constructor<T>) cls.getDeclaredConstructors()[0];
-        final List<Object> params = new ArrayList<>();
+        final List<Object> params = new ArrayList<Object>();
         if (constr.getParameterTypes().length > 0) {
             for (Class<?> pType : constr.getParameterTypes()) {
                 params.add(defaultValue(pType));
