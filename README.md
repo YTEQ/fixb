@@ -1,4 +1,64 @@
 fix4j
 =====
 
-Java to FIX mapping library that simplifies serialization of Java objects into FIX protocol messages
+Fix4j is a library for Java/FIX bindings that simplifies serialization/deserialization of Java objects to/from FIX protocol messages. The bindings are defined using Java annotations.
+
+Example:
+```java
+    @FixMessage(type = "Q")
+    public class FxQuote extends BaseQuote {
+
+        public static enum Side { BUY, SELL }
+
+        @FixField(tag = 40)
+        private final Side side;
+
+        @FixField(tag = SYMBOL)
+        private final String symbol;
+
+        @FixGroup(tag = AMOUNT_GR, componentTag = AMOUNT, component = Integer.class)
+        private final List amounts;
+
+        @FixGroup(tag = PARAM_GR, component = Params.class)
+        private final List<Params> paramsList;
+
+        @FixBlock
+        private final Params params;
+
+        public Quote(
+                final String quoteId,
+                final Side side,
+                final String symbol,
+                final List<Integer> amounts,
+                final List<Params> paramsList,
+                final Params params) {
+            super(quoteId);
+            this.side = side;
+            this.symbol = symbol;
+            this.amounts = amounts;
+            this.paramsList = paramsList;
+            this.params = params;
+        }
+
+        public String getSymbol() {
+            return symbol;
+        }
+
+        public Side getSide() {
+            return side;
+        }
+
+        public List getAmounts() {
+            return amounts;
+        }
+
+        public Params getParams() {
+            return params;
+        }
+
+        public List<Params> getParamsList() {
+            return paramsList;
+        }
+    }
+```
+
