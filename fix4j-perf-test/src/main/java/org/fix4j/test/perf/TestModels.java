@@ -162,12 +162,12 @@ public final class TestModels {
         private final Params params;
 
         public SampleQuote(
-                @FixField(tag = QUOTE_ID) final String quoteId,
-                @FixField(tag = SIDE) final Side side,
-                @FixField(tag = SYMBOL) final String symbol,
-                @FixField(tag = AMOUNT_GR) final List<Integer> amounts,
-                @FixField(tag = PARAM_GR) final List<Params> paramsList,
-                @FixBlock final Params params) {
+                final String quoteId,
+                final Side side,
+                final String symbol,
+                final List<Integer> amounts,
+                final List<Params> paramsList,
+                final Params params) {
             super(quoteId);
             this.side = side;
             this.symbol = symbol;

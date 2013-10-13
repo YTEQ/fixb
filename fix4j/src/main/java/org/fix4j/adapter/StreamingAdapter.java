@@ -48,7 +48,7 @@ public class StreamingAdapter implements FixAdapter<Object, String> {
         FieldCursor cursor = FieldCursor.create(fixMessage);
 
         FixMessageMeta<?> meta = null;
-        Map<FixFieldMeta, Object> params = new HashMap<>();
+        Map<FixFieldMeta, Object> params = new HashMap<FixFieldMeta, Object>();
 
         while (cursor.nextField()) {
             int tag = cursor.lastTag();

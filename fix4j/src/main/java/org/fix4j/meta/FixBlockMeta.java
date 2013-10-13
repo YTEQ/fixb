@@ -52,6 +52,7 @@ public class FixBlockMeta<T> {
      * @param fields         the fields metadata
      * @param useConstructor identifies whether to use constructor for instance initialisations
      */
+    @SuppressWarnings("unchecked")
     public FixBlockMeta(Class<T> type, List<FixFieldMeta> fields, boolean useConstructor) {
         this.type = type;
         this.constructor = useConstructor ? Optional.of((Constructor<T>) type.getConstructors()[0]) : Optional.<Constructor<T>>absent();
@@ -87,10 +88,9 @@ public class FixBlockMeta<T> {
     }
 
     private <T> T createModel(Constructor<T> constr, Map<FixFieldMeta, Object> values, int level) throws Exception {
-        List<Object> params = new ArrayList<Object>(constr.getParameterTypes().length);
+        final List<Object> params = new ArrayList<Object>(constr.getParameterTypes().length);
 
-        //keep array so we can go back an index...
-        FixFieldMeta[] keys = new FixFieldMeta[values.keySet().size()];
+        final FixFieldMeta[] keys = new FixFieldMeta[values.keySet().size()];
         values.keySet().toArray(keys);
 
         for (int i = 0; i < keys.length; i++) {
@@ -173,7 +173,8 @@ public class FixBlockMeta<T> {
         return instantiate(clazz, params);
     }
 
-    private <T> T instantiate(Class<T> cls, Map<Field, ? extends Object> args) throws Exception {
+    @SuppressWarnings("unchecked")
+    private <T> T instantiate(Class<T> cls, Map<Field, ?> args) throws Exception {
         // Create instance of the given class
         final Constructor<T> constr = (Constructor<T>) cls.getDeclaredConstructors()[0];
         final List<Object> params = new ArrayList<Object>();
@@ -184,7 +185,7 @@ public class FixBlockMeta<T> {
         }
         final T instance = constr.newInstance(params.toArray());
         // Set separate fields
-        for (Map.Entry<Field, ? extends Object> pair : args.entrySet()) {
+        for (Map.Entry<Field, ?> pair : args.entrySet()) {
             Field field = pair.getKey();
             field.setAccessible(true);
             field.set(instance, pair.getValue());

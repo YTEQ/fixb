@@ -65,7 +65,7 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
      * @return an instance of type T populated with values from the given FieldCursor.
      */
     <T> T extractFixBlock(FieldCursor cursor, FixBlockMeta<T> componentMeta) {
-        final Map<FixFieldMeta, Object> values = new LinkedHashMap<>(componentMeta.getFields().size());
+        final Map<FixFieldMeta, Object> values = new LinkedHashMap<FixFieldMeta, Object>(componentMeta.getFields().size());
 
         for (FixFieldMeta f : componentMeta.getFields()) {
             if (f instanceof FixConstantFieldMeta) continue;

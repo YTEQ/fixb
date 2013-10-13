@@ -42,7 +42,7 @@ public class NativeSerializerPerfTest {
     private final FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl("org.fix4j.test.perf");
     private final NativeFixSerializer nativeSerializer = new NativeFixSerializer(FIX_5_0, fixMetaRepository);
     private final QuickFixSerializer quickFixSerializer = new QuickFixSerializer(FIX_5_0, fixMetaRepository);
-    private final CommonFixAdapter<Message> quickFixAdapter = new CommonFixAdapter<>(FIX_5_0,
+    private final CommonFixAdapter<Message> quickFixAdapter = new CommonFixAdapter<Message>(FIX_5_0,
             new QuickFixFieldExtractor(), new QuickFixMessageBuilder.Factory(), fixMetaRepository);
 
     @Test

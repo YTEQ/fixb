@@ -27,7 +27,7 @@ import static org.fix4j.impl.FormatConstants.SOH;
  * @author vladyslav.yatsenko
  */
 public class FieldCursor {
-    private Map<Integer, String> cache = new HashMap<>();
+    private Map<Integer, String> cache = new HashMap<Integer, String>();
     private int lastPosition = -1;
     private int lastTag;
 

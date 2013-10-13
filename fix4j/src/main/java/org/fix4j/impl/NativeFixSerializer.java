@@ -41,7 +41,7 @@ public class NativeFixSerializer<T> implements FixSerializer<T> {
     public NativeFixSerializer(String protocolVersion, FixMetaRepository fixMetaRepository) {
         this.fixMetaRepository = fixMetaRepository;
         this.extractor = new NativeFixFieldExtractor();
-        this.fixAdapter = new CommonFixAdapter<>(
+        this.fixAdapter = new CommonFixAdapter<String>(
                 protocolVersion,
                 extractor,
                 new NativeFixMessageBuilder.Factory(),

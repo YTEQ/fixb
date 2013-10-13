@@ -123,7 +123,7 @@ public class FixMetaScanner {
         if (annotations.length == 0) {
             return false;
         }
-        final Set<Class<? extends Annotation>> fixAnnotationType = new HashSet<>(asList(FixBlock.class, FixField.class, FixGroup.class));
+        final Set<Class<? extends Annotation>> fixAnnotationType = new HashSet<Class<? extends Annotation>>(asList(FixBlock.class, FixField.class, FixGroup.class));
         for (Annotation annotation : annotations) {
             if (fixAnnotationType.contains(annotation.annotationType())) {
                 return true;
