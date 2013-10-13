@@ -28,6 +28,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import static org.fix4j.FixConstants.CHECKSUM_TAG;
+import static org.fix4j.impl.FormatConstants.*;
+
 /**
  * I implement FixMessageBuilder and I can build raw (represented as a String) FIX messages ready for transmission.
  * I am the fastest implementation as I don't create any intermediate object.
@@ -53,30 +56,30 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
 
     @Override
     public String build() {
-        return appendTag(head.append(body), 10).append(generateCheckSum(head)).toString();
+        return appendTag(head.append(body), CHECKSUM_TAG).append(generateCheckSum(head)).toString();
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, char value, boolean header) {
-        appendTag(tag, header).append(value).append(FormatConstants.SOH);
+        appendTag(tag, header).append(value).append(SOH);
         return this;
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, int value, boolean header) {
-        appendTag(tag, header).append(value).append(FormatConstants.SOH);
+        appendTag(tag, header).append(value).append(SOH);
         return this;
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, double value, boolean header) {
-        appendTag(tag, header).append(value).append(FormatConstants.SOH);
+        appendTag(tag, header).append(value).append(SOH);
         return this;
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, boolean value, boolean header) {
-        appendTag(tag, header).append(value ? 'Y' : 'N').append(FormatConstants.SOH);
+        appendTag(tag, header).append(value ? 'Y' : 'N').append(SOH);
         return this;
     }
 
@@ -87,42 +90,42 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
 
     @Override
     public FixMessageBuilder<String> setField(int tag, LocalDate value, boolean header) {
-        return setField(tag, value.toString(FormatConstants.DATE_FORMAT), header);
+        return setField(tag, value.toString(DATE_FORMAT), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, LocalTime value, boolean header) {
-        final String pattern = (value.getMillisOfSecond() == 0) ? FormatConstants.TIME_FORMAT : FormatConstants.TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getMillisOfSecond() == 0) ? TIME_FORMAT : TIME_FORMAT_WITH_MILLIS;
         return setField(tag, value.toString(pattern), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, LocalDateTime value, boolean header) {
-        final String pattern = (value.getMillisOfSecond() == 0) ? FormatConstants.DATE_TIME_FORMAT : FormatConstants.DATE_TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getMillisOfSecond() == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
         return setField(tag, value.toString(pattern), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, DateTime value, boolean header) {
-        final String pattern = (value.getMillisOfSecond() == 0) ? FormatConstants.DATE_TIME_FORMAT : FormatConstants.DATE_TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getMillisOfSecond() == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
         return setField(tag, value.toString(pattern), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, Instant value, boolean header) {
-        final String pattern = (value.get(DateTimeFieldType.millisOfSecond()) == 0) ? FormatConstants.DATE_TIME_FORMAT : FormatConstants.DATE_TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.get(DateTimeFieldType.millisOfSecond()) == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
         return setField(tag, value.toString(DateTimeFormat.forPattern(pattern)), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, Date value, boolean header) {
-        final String pattern = (value.getTime() % 1000 == 0) ? FormatConstants.DATE_TIME_FORMAT : FormatConstants.DATE_TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getTime() % 1000 == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
         return setField(tag, new SimpleDateFormat(pattern).format(value), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, String value, boolean header) {
-        appendTag(tag, header).append(value).append(FormatConstants.SOH);
+        appendTag(tag, header).append(value).append(SOH);
         return this;
     }
 

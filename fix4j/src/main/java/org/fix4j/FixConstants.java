@@ -24,6 +24,7 @@ package org.fix4j;
 public final class FixConstants {
     public static final int BEGIN_STRING_TAG = 8;
     public static final int MSG_TYPE_TAG = 35;
+    public static final int CHECKSUM_TAG = 10;
 
     private FixConstants() {
     }
