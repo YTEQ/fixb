@@ -16,10 +16,10 @@ Example (tags are fictitious):
         @FixField(tag = 12)
         private final String symbol;
 
-        @FixGroup(tag = 13, componentTag = 14, component = Integer.class)
-        private final List amounts;
+        @FixGroup(tag = 13, componentTag = 14)
+        private final List<Integer> amounts;
 
-        @FixGroup(tag = 20, component = Params.class)
+        @FixGroup(tag = 20)
         private final List<Params> paramsList;
 
         @FixBlock
