@@ -1,7 +1,7 @@
-fix4j
+FixB (FIX Bindings)
 =====
 
-Fix4j is a library for Java/FIX bindings that simplifies serialization/deserialization of Java objects to/from FIX protocol messages. The bindings are defined using Java annotations.
+FixB is a library for Java/FIX bindings that simplifies serialization/deserialization of Java objects to/from FIX protocol messages. The bindings are defined using Java annotations.
 
 Example (tags are fictitious):
 ```java
