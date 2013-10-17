@@ -25,7 +25,7 @@ Example (tags are fictitious):
         @FixBlock
         private final Params params;
 
-        public Quote(
+        public FxQuote(
                 final String quoteId,
                 final Side side,
                 final String symbol,
@@ -48,7 +48,7 @@ Example (tags are fictitious):
             return side;
         }
 
-        public List getAmounts() {
+        public List<Integer> getAmounts() {
             return amounts;
         }
 
