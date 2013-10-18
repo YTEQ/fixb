@@ -55,7 +55,7 @@ public class NativeSerializerPerfTest {
             @Override
             public void run() {
                 int laps = 10;
-                measure("Serialize with Fix4j/Native", laps, new Runnable() {
+                measure("Serialize with FixB/Native", laps, new Runnable() {
                     @Override
                     public void run() {
                         int i = 0;
@@ -73,7 +73,7 @@ public class NativeSerializerPerfTest {
                         }
                     }
                 });
-                measure("Serialize with Fix4j/QuickFixJ", laps, new Runnable() {
+                measure("Serialize with FixB/QuickFixJ", laps, new Runnable() {
                     @Override
                     public void run() {
                         int i = 0;
@@ -91,7 +91,7 @@ public class NativeSerializerPerfTest {
                         }
                     }
                 });
-                measure("Deserialize with Fix4j/Native", laps, new Runnable() {
+                measure("Deserialize with FixB/Native", laps, new Runnable() {
                     @Override
                     public void run() {
                         for (String sampleQuote : fixData) {
@@ -99,7 +99,7 @@ public class NativeSerializerPerfTest {
                         }
                     }
                 });
-                measure("Deserialize with Fix4j/QuickFixJ", laps, new Runnable() {
+                measure("Deserialize with FixB/QuickFixJ", laps, new Runnable() {
                     @Override
                     public void run() {
                         for (String sampleQuote : fixData) {
