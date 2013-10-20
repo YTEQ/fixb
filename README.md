@@ -65,7 +65,8 @@ Example (tags are fictitious):
 To start serializing your POJOs into FIX messages and vice versa it's enough to create an instance of a FixSerializer as below:
 
 ```java
-final FixSerializer<Object> fixSerializer = new NativeFixSerializer<>("FIX.5.0", new FixMetaRepositoryImpl("my.package.with.fix.classes"));
+final FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl("my.package.with.fix.classes");
+final FixSerializer<Object> fixSerializer = new NativeFixSerializer<>("FIX.5.0", fixMetaRepository);
 ```
 
 And actually using the FixSerializer:
