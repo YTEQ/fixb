@@ -16,6 +16,7 @@
 
 package org.fixb.test.perf;
 
+import org.fixb.FixSerializer;
 import org.fixb.adapter.CommonFixAdapter;
 import org.fixb.impl.NativeFixSerializer;
 import org.fixb.meta.FixMetaRepository;
@@ -40,15 +41,15 @@ public class NativeSerializerPerfTest {
 
     public static final String FIX_5_0 = "FIX.5.0";
     private final FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl("org.fixb.test.perf");
-    private final NativeFixSerializer nativeSerializer = new NativeFixSerializer(FIX_5_0, fixMetaRepository);
-    private final QuickFixSerializer quickFixSerializer = new QuickFixSerializer(FIX_5_0, fixMetaRepository);
-    private final CommonFixAdapter<Message> quickFixAdapter = new CommonFixAdapter<Message>(FIX_5_0,
+    private final FixSerializer<Object> nativeSerializer = new NativeFixSerializer<>(FIX_5_0, fixMetaRepository);
+    private final FixSerializer<Message> quickFixSerializer = new QuickFixSerializer(FIX_5_0, fixMetaRepository);
+    private final CommonFixAdapter<Message> quickFixAdapter = new CommonFixAdapter<>(FIX_5_0,
             new QuickFixFieldExtractor(), new QuickFixMessageBuilder.Factory(), fixMetaRepository);
 
     @Test
     public void run() {
         final SampleQuote[] objectData = generateData(1000);
-        final Message[] quickfixData = new Message[1000];
+        final Message[] quickFixData = new Message[1000];
         final String[] fixData = new String[1000];
 
         measure("Iterations", 10, new Runnable() {
@@ -69,7 +70,7 @@ public class NativeSerializerPerfTest {
                     public void run() {
                         int i = 0;
                         for (SampleQuote sampleQuote : objectData) {
-                            quickfixData[i++] = quickFixAdapter.toFix(sampleQuote);
+                            quickFixData[i++] = quickFixAdapter.toFix(sampleQuote);
                         }
                     }
                 });
@@ -86,7 +87,7 @@ public class NativeSerializerPerfTest {
                     @Override
                     public void run() {
                         int i = 0;
-                        for (Message sampleQuote : quickfixData) {
+                        for (Message sampleQuote : quickFixData) {
                             fixData[i++] = quickFixSerializer.serialize(sampleQuote);
                         }
                     }

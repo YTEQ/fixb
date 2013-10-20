@@ -64,7 +64,7 @@ public class FixMetaScanner {
         Preconditions.checkNotNull(model, "model");
         Preconditions.checkNotNull(model, "repository");
         if (repository.containsMeta(model)) {
-            return (FixBlockMeta<T>) repository.getMeta(model);
+            return repository.getMeta(model);
         }
 
         final FixBlockMeta<T> result = scanClass(model, repository);
@@ -74,7 +74,7 @@ public class FixMetaScanner {
 
     static <T> FixBlockMeta<T> scanClass(Class<T> model, FixMetaRepository repository) {
         if (repository.containsMeta(model)) {
-            return (FixBlockMeta<T>) repository.getMeta(model);
+            return repository.getMeta(model);
         }
 
         final FixBlockMeta<T> result;
@@ -83,6 +83,7 @@ public class FixMetaScanner {
             throw new FixException("Class [" + model.getName() + "] does not provide a public constructor.");
         }
 
+        @SuppressWarnings("unchecked")
         Optional<Constructor<T>> constructor = Optional.of((Constructor<T>) model.getConstructors()[0]);
 
         final int c = numberOfFixParameters(constructor.get());
@@ -98,10 +99,10 @@ public class FixMetaScanner {
             ImmutableList.Builder<FixFieldMeta> allFieldsBuilder = ImmutableList.builder();
             allFieldsBuilder.addAll(processConstantFields(messageAnnotation)); // add constant fields
             allFieldsBuilder.addAll(processFields(model, constructor, repository)); // add all other fields
-            result = new FixMessageMeta<T>(model, messageAnnotation.type(), allFieldsBuilder.build(), constructor.isPresent());
+            result = new FixMessageMeta<>(model, messageAnnotation.type(), allFieldsBuilder.build(), constructor.isPresent());
         } else if (model.isAnnotationPresent(FixBlock.class)) {
             final List<FixFieldMeta> fixFields = processFields(model, constructor, repository);
-            result = new FixBlockMeta<T>(model, fixFields, constructor.isPresent());
+            result = new FixBlockMeta<>(model, fixFields, constructor.isPresent());
         } else {
             throw new FixException("Neither @FixBlock nor @FixMessage annotation present on class [" + model.getName() + "].");
         }
@@ -123,7 +124,7 @@ public class FixMetaScanner {
         if (annotations.length == 0) {
             return false;
         }
-        final Set<Class<? extends Annotation>> fixAnnotationType = new HashSet<Class<? extends Annotation>>(asList(FixBlock.class, FixField.class, FixGroup.class));
+        final Set<Class<? extends Annotation>> fixAnnotationType = new HashSet<>(asList(FixBlock.class, FixField.class, FixGroup.class));
         for (Annotation annotation : annotations) {
             if (fixAnnotationType.contains(annotation.annotationType())) {
                 return true;
@@ -133,7 +134,7 @@ public class FixMetaScanner {
     }
 
     private static List<FixFieldMeta> processConstantFields(FixMessage messageAnnotation) {
-        final List<FixFieldMeta> headerFields = new ArrayList<FixFieldMeta>();
+        final List<FixFieldMeta> headerFields = new ArrayList<>();
         headerFields.add(fixFieldMeta(MSG_TYPE_TAG, messageAnnotation.type(), true));
         for (FixMessage.Field f : messageAnnotation.header()) {
             headerFields.add(fixFieldMeta(f.tag(), f.value(), true));
@@ -154,7 +155,7 @@ public class FixMetaScanner {
             orderFixFields(constructor.get(), fixFields, orderedFixFields, repository, 0);
             return asList(orderedFixFields);
         } else {
-            return new ArrayList(fixFields.values());
+            return new ArrayList<>(fixFields.values());
         }
     }
 
@@ -246,7 +247,6 @@ public class FixMetaScanner {
                                 fixFieldMeta.isOptional(),
                                 newFieldPath));
                     }
-                    //fixFields.putAll(scanFields(f.getType(), repository, path));
                 } else if (FixGroup.class == annotation.annotationType()) {
                     if (Collection.class.isAssignableFrom(type)) {
                         FixGroup fixGroup = (FixGroup) annotation;

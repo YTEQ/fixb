@@ -57,7 +57,7 @@ public class NativeFixSerializer<T> implements FixSerializer<T> {
     public T deserialize(String fixMessage) {
         FieldCursor cursor = FieldCursor.create(fixMessage);
         if (!cursor.nextField(MSG_TYPE_TAG)) {
-            throw new FixException("Invalid FIX message, MsgType(35) is missing in message: " + fixMessage);
+            throw new FixException("Invalid FIX message, MsgType(35) is missing in: " + fixMessage);
         }
 
 

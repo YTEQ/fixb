@@ -19,31 +19,27 @@ package org.fixb.meta;
 import java.util.Collection;
 
 /**
- * Created with IntelliJ IDEA.
- * User: vyatsenko
- * Date: 13/10/2013
- * Time: 14:56
- * To change this template use File | Settings | File Templates.
+ * I am a repository of FIX metadata. I provide lookup methods to find FIX mapping metadata by Java object type or by FIX
+ * message type.
+ *
+ * @author vladyslav.yatsenko
  */
 public interface FixMetaRepository {
     Collection<FixMessageMeta<?>> getAllMessageMetas();
 
     <T> FixMessageMeta<T> getMetaForClass(Class<T> type);
 
-    @SuppressWarnings("unchecked")
     <T> FixMessageMeta<T> getMetaForMessageType(String fixMessageType);
 
     FixMetaRepository addPackage(String packageName);
 
-    FixBlockMeta<?> addMeta(FixBlockMeta<?> newMeta);
+    FixMetaRepository addMeta(FixBlockMeta<?> newMeta);
 
     boolean containsMeta(Class<?> type);
 
     boolean containsMeta(String fixMessageType);
 
-    FixBlockMeta<?> getMeta(Class<?> type);
+    <T> FixBlockMeta<T> getMeta(Class<T> type);
 
-    FixMessageMeta<?> getMeta(String fixMessageType);
-
-    FixBlockMeta<?> getOrCreateMeta(Class<?> type);
+    <T> FixBlockMeta<T> getOrCreateMeta(Class<T> type);
 }

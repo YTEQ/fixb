@@ -30,10 +30,10 @@ public class FixDynamicFieldMeta extends FixFieldMeta {
     private final Class<?> type;
 
     /**
-     * @param tag the FIX tag
-     * @param header identifies whether the mapped FIX field is a part of the FIX message header
+     * @param tag      the FIX tag
+     * @param header   identifies whether the mapped FIX field is a part of the FIX message header
      * @param optional identifies whether the field is nullable
-     * @param path the POJO field path used to resolve this field's value
+     * @param path     the POJO field path used to resolve this field's value
      */
     public FixDynamicFieldMeta(int tag, boolean header, boolean optional, Field... path) {
         super(tag, header, optional);
@@ -70,8 +70,9 @@ public class FixDynamicFieldMeta extends FixFieldMeta {
 
     /**
      * Resolves the field's value using the given object.
-     * @param o the object containing the field's value.
-     * @return
+     *
+     * @param o the object containing the field's value
+     * @return this field's value from the given object.
      */
     public Object getValue(Object o) {
         try {

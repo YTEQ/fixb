@@ -36,7 +36,7 @@ public interface FixAdapter<T, M> {
     /**
      * Converts the given domain object into a FIX message object specific to the underlying FIX library.
      *
-     * @param data
+     * @param data a domain object (a FIX-enabled POJO)
      * @return a FIX message specific to the underlying FIX library.
      */
     M toFix(T data);

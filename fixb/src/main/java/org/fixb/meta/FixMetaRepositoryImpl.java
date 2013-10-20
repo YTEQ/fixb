@@ -17,12 +17,13 @@
 package org.fixb.meta;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
 import org.fixb.annotations.FixMessage;
 import org.reflections.Reflections;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -35,8 +36,8 @@ import static java.lang.String.format;
  * @author vladyslav.yatsenko
  */
 public final class FixMetaRepositoryImpl implements FixMetaRepository {
-    private final ConcurrentMap<Class<?>, FixBlockMeta<?>> allMetas = new ConcurrentHashMap<Class<?>, FixBlockMeta<?>>();
-    private final ConcurrentMap<String, FixMessageMeta<?>> messageMetas = new ConcurrentHashMap<String, FixMessageMeta<?>>();
+    private final ConcurrentMap<Class<?>, FixBlockMeta<?>> allMetas = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, FixMessageMeta<?>> messageMetas = new ConcurrentHashMap<>();
 
     public FixMetaRepositoryImpl() {
     }
@@ -61,7 +62,7 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
      */
     @Override
     public <T> FixMessageMeta<T> getMetaForClass(Class<T> type) {
-        final FixBlockMeta<?> meta = getOrCreateMeta(type);
+        final FixBlockMeta<T> meta = getOrCreateMeta(type);
 
         if (!(meta instanceof FixMessageMeta)) {
             throw new IllegalStateException(format("No FixMessageMeta found for class %s", type));
@@ -98,7 +99,7 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
     }
 
     @Override
-    public FixBlockMeta<?> addMeta(final FixBlockMeta<?> newMeta) {
+    public FixMetaRepository addMeta(final FixBlockMeta<?> newMeta) {
         Preconditions.checkNotNull(newMeta, "newMeta");
 
         final FixBlockMeta<?> prevMeta = allMetas.putIfAbsent(newMeta.getType(), newMeta);
@@ -115,16 +116,19 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
 
         }
 
-        return newMeta;
+        return this;
     }
 
     @Override
-    public FixBlockMeta<?> getOrCreateMeta(Class<?> type) {
+    @SuppressWarnings("unchecked")
+    public <T> FixBlockMeta<T> getOrCreateMeta(Class<T> type) {
         if (allMetas.containsKey(type)) {
-            return allMetas.get(type);
+            return (FixBlockMeta<T>) allMetas.get(type);
         }
 
-        return addMeta(FixMetaScanner.scanClass(type, this));
+        final FixBlockMeta<T> newMeta = FixMetaScanner.scanClass(type, this);
+        addMeta(newMeta);
+        return newMeta;
     }
 
     @Override
@@ -138,56 +142,43 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
     }
 
     @Override
-    public FixBlockMeta<?> getMeta(Class<?> type) {
-        final FixBlockMeta<?> meta = allMetas.get(type);
+    @SuppressWarnings("unchecked")
+    public <T> FixBlockMeta<T> getMeta(Class<T> type) {
+        final FixBlockMeta<T> meta = (FixBlockMeta<T>) allMetas.get(type);
         if (meta == null) {
-            throw new IllegalStateException("No meta for class ["
-                    + type
-                    + "] found. Probably it was not added to repository.");
+            throw new IllegalStateException("No meta for class [" + type + "] found. Probably it was not added to repository.");
         }
         return meta;
     }
 
-    @Override
     public FixMessageMeta<?> getMeta(String fixMessageType) {
         final FixMessageMeta<?> meta = messageMetas.get(fixMessageType);
         if (meta == null) {
-            throw new IllegalStateException("No meta for message type ["
-                    + fixMessageType
-                    + "] found. Probably it was not added to repository.");
+            throw new IllegalStateException("No meta for message type [" + fixMessageType + "] found. Probably it was not added to repository.");
         }
         return meta;
     }
 
     /**
-     * Scans all classes accessible from the context class loader which belong
-     * to the given package and subpackages.
+     * Scans all classes accessible from the context class loader which belong to the given package and subpackages.
      *
-     * @param packageName The base package
-     * @return The classes
+     * @param packageName the base package
+     * @return All found classes with FIX bindings.
      */
     private static Set<Class<?>> getClasses(final String packageName) {
         final Reflections reflections = new Reflections(packageName);
-        final Set<Class<?>> allClasses = ImmutableSet.copyOf(reflections.getTypesAnnotatedWith(FixMessage.class));
+        final Set<Class<?>> allClasses = reflections.getTypesAnnotatedWith(FixMessage.class);
 
-        /*
-        * Sort the set by type name because otherwise while running this, the ordering of how
-        * the classes are loaded into the FixMetaRepositoryImpl will affect when a malformed FixMessage
-        * will be processed and therefore at what point in the code the error will be observed;
-        * suggesting this observation to be a race-condition, but is actually caused by the order
-        * Reflections returns found classes.
-        */
-        List<Class<?>> toSort = Lists.newArrayList(allClasses);
-        Collections.sort(toSort, new Comparator<Class<?>>() {
+        // Process classes in constant order
+        final TreeSet<Class<?>> sortedClasses = new TreeSet<>(new Comparator<Class<?>>() {
             @Override
             public int compare(Class<?> o1, Class<?> o2) {
-                Preconditions.checkNotNull(o1, "o1");
-                Preconditions.checkNotNull(o2, "o2");
                 return o1.getName().compareTo(o2.getName());
             }
         });
 
-        final Set<Class<?>> sortedClasses = ImmutableSet.copyOf(toSort);
+        sortedClasses.addAll(allClasses);
+
         return sortedClasses;
     }
 }
