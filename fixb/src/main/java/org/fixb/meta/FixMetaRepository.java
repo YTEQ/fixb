@@ -25,12 +25,30 @@ import java.util.Collection;
  * @author vladyslav.yatsenko
  */
 public interface FixMetaRepository {
+    /**
+     * @return all FixMessageMetas registered with the FixMetaRepositoryImpl singleton
+     */
     Collection<FixMessageMeta<?>> getAllMessageMetas();
 
+    /**
+     * @return a FixMessageMeta for the given class. If meta has not been previously registered with this repository
+     *         it will be collected from the given class definition using {@link FixMetaScanner}.
+     * @throws IllegalStateException if no meta instance found.
+     * @see FixMetaScanner
+     */
     <T> FixMessageMeta<T> getMetaForClass(Class<T> type);
 
+    /**
+     * @return a FixMessageMeta for the given FIX message type.
+     * @throws IllegalStateException if no meta instance found.
+     */
     <T> FixMessageMeta<T> getMetaForMessageType(String fixMessageType);
 
+    /**
+     * Scans the given package for classes annotated with @FixMessage and adds them to repository.
+     *
+     * @param packageName a name of the package containing FIX mapped classes
+     */
     FixMetaRepository addPackage(String packageName);
 
     FixMetaRepository addMeta(FixBlockMeta<?> newMeta);

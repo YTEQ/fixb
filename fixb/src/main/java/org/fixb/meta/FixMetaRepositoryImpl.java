@@ -46,20 +46,11 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
         addPackage(packageName);
     }
 
-    /**
-     * @return all FixMessageMetas registered with the FixMetaRepositoryImpl singleton
-     */
     @Override
     public Collection<FixMessageMeta<?>> getAllMessageMetas() {
         return messageMetas.values();
     }
 
-    /**
-     * @return a FixMessageMeta for the given class. If meta has not been previously registered with this repository
-     *         it will be collected from the given class definition using {@link FixMetaScanner}.
-     * @throws IllegalStateException if no meta instance found.
-     * @see FixMetaScanner
-     */
     @Override
     public <T> FixMessageMeta<T> getMetaForClass(Class<T> type) {
         final FixBlockMeta<T> meta = getOrCreateMeta(type);
@@ -71,21 +62,12 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
         return (FixMessageMeta<T>) meta;
     }
 
-    /**
-     * @return a FixMessageMeta for the given FIX message type.
-     * @throws IllegalStateException if no meta instance found.
-     */
     @Override
     @SuppressWarnings("unchecked")
     public <T> FixMessageMeta<T> getMetaForMessageType(String fixMessageType) {
         return (FixMessageMeta<T>) getMeta(fixMessageType);
     }
 
-    /**
-     * Scans the given package for classes annotated with @FixMessage and adds them to repository.
-     *
-     * @param packageName a name of the package containing FIX mapped classes
-     */
     @Override
     public FixMetaRepository addPackage(String packageName) {
         try {
