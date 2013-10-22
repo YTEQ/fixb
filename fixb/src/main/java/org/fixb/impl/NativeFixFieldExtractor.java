@@ -69,8 +69,9 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
      * @param <T>           a type of object to create
      * @return an instance of type T populated with values from the given FieldCursor.
      */
+    @SuppressWarnings("unchecked")
     <T> T extractFixBlock(FieldCursor cursor, FixBlockMeta<T> componentMeta) {
-        final Map<FixFieldMeta, Object> values = new LinkedHashMap<FixFieldMeta, Object>(componentMeta.getFields().size());
+        final Map<FixFieldMeta, Object> values = new LinkedHashMap<>(componentMeta.getFields().size());
 
         for (FixFieldMeta f : componentMeta.getFields()) {
             if (f instanceof FixConstantFieldMeta) continue;
@@ -151,6 +152,7 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
 
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T toRequestedType(String value, Class<T> type) {
         if (type == String.class) return (T) value;
         if (type == Boolean.class || type == boolean.class) return (T) toBoolean(value);
@@ -204,7 +206,7 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
     }
 
     private Boolean toBoolean(String value) {
-        return Boolean.valueOf("Y".equals(value) || "1".equals(value));
+        return "Y".equals(value) || "1".equals(value);
     }
 
     private Enum<?> toEnum(String value, Class<Enum> type) {

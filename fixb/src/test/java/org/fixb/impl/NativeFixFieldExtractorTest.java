@@ -21,9 +21,7 @@ import org.fixb.meta.FixDynamicFieldMeta;
 import org.fixb.meta.FixEnumMeta;
 import org.fixb.meta.FixEnumRepository;
 import org.fixb.test.TestHelper;
-import org.fixb.test.data.SampleQuote;
 import org.joda.time.*;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -35,6 +33,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
+@SuppressWarnings("unchecked")
 public class NativeFixFieldExtractorTest {
     private final FixEnumRepository fixEnumRepository = mock(FixEnumRepository.class);
     private final NativeFixFieldExtractor extractor = new NativeFixFieldExtractor(fixEnumRepository);
@@ -87,12 +86,12 @@ public class NativeFixFieldExtractorTest {
     public void testGetComplexGroups() throws Exception {
         final String fix = TestHelper.fix("100=2", "101=one", "102=10", "103=1.1", "101=two", "102=20", "103=2.2");
 
-        FixBlockMeta componentMeta = new FixBlockMeta(Sample.class, asList(
+        FixBlockMeta<Sample> componentMeta = new FixBlockMeta<>(Sample.class, asList(
                 new FixDynamicFieldMeta(101, false, false, Sample.class.getDeclaredField("f1")),
                 new FixDynamicFieldMeta(102, false, false, Sample.class.getDeclaredField("f2")),
                 new FixDynamicFieldMeta(103, false, false, Sample.class.getDeclaredField("f3"))));
 
-        List<String> groups = extractor.getGroups(fix, List.class, 100, componentMeta, false);
+        List<Sample> groups = extractor.getGroups(fix, List.class, 100, componentMeta, false);
 
         assertEquals(2, groups.size());
         assertEquals(new Sample("one", 10, 1.1), groups.get(0));
@@ -127,6 +126,9 @@ public class NativeFixFieldExtractorTest {
 
         @Override
         public boolean equals(Object obj) {
+            if (!(obj instanceof Sample)) {
+                return false;
+            }
             Sample o = (Sample) obj;
             return f1.equals(o.f1) && f2 == o.f2 && f3 == o.f3;
         }

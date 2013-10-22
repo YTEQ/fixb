@@ -43,7 +43,7 @@ public class FixBlockMeta<T> {
      * @param type   the domain object type this FixBlockMeta is for
      * @param fields the fields metadata
      */
-    public FixBlockMeta(Class<T> type, List<FixFieldMeta> fields) {
+    public FixBlockMeta(Class<T> type, List<? extends FixFieldMeta> fields) {
         this(type, fields, false);
     }
 
@@ -53,7 +53,7 @@ public class FixBlockMeta<T> {
      * @param useConstructor identifies whether to use constructor for instance initialisations
      */
     @SuppressWarnings("unchecked")
-    public FixBlockMeta(Class<T> type, List<FixFieldMeta> fields, boolean useConstructor) {
+    public FixBlockMeta(Class<T> type, List<? extends FixFieldMeta> fields, boolean useConstructor) {
         this.type = type;
         this.constructor = useConstructor ? Optional.of((Constructor<T>) type.getConstructors()[0]) : Optional.<Constructor<T>>absent();
         this.fields = unmodifiableList(fields);
