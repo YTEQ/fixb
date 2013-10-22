@@ -2,6 +2,7 @@ FixB (FIX Bindings)
 =====
 
 FixB is a library for Java/FIX bindings that simplifies serialization of Java objects to/from FIX protocol messages. The bindings are defined using Java annotations.
+The library is especially useful when there is a need to interchange custom non-standard FIX messages.
 
 Example (tags are fictitious):
 ```java
