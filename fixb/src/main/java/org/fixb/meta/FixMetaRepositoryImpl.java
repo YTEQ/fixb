@@ -17,13 +17,11 @@
 package org.fixb.meta;
 
 import com.google.common.base.Preconditions;
+import org.fixb.annotations.FixEnum;
 import org.fixb.annotations.FixMessage;
 import org.reflections.Reflections;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -36,8 +34,9 @@ import static java.lang.String.format;
  * @author vladyslav.yatsenko
  */
 public final class FixMetaRepositoryImpl implements FixMetaRepository {
-    private final ConcurrentMap<Class<?>, FixBlockMeta<?>> allMetas = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Class<?>, FixBlockMeta<?>> componentMetas = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, FixMessageMeta<?>> messageMetas = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Class<?>, FixEnumMeta<?>> enumMetas = new ConcurrentHashMap<>();
 
     public FixMetaRepositoryImpl() {
     }
@@ -53,7 +52,7 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
 
     @Override
     public <T> FixMessageMeta<T> getMetaForClass(Class<T> type) {
-        final FixBlockMeta<T> meta = getOrCreateMeta(type);
+        final FixBlockMeta<T> meta = getOrCreateComponentMeta(type);
 
         if (!(meta instanceof FixMessageMeta)) {
             throw new IllegalStateException(format("No FixMessageMeta found for class %s", type));
@@ -65,14 +64,30 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
     @Override
     @SuppressWarnings("unchecked")
     public <T> FixMessageMeta<T> getMetaForMessageType(String fixMessageType) {
-        return (FixMessageMeta<T>) getMeta(fixMessageType);
+        return (FixMessageMeta<T>) getMessageMeta(fixMessageType);
     }
 
     @Override
-    public FixMetaRepository addPackage(String packageName) {
+    @SuppressWarnings("unchecked")
+    public <T extends Enum<T>> FixEnumMeta<T> getFixEnumMeta(Class<T> enumType) {
+        return (FixEnumMeta<T>) enumMetas.get(enumType);
+    }
+
+    @Override
+    public boolean hasFixEnumMeta(Class<?> enumType) {
+        return enumMetas.containsKey(enumType);
+    }
+
+    @Override
+    public FixEnumRepository addPackage(String packageName) {
         try {
             for (Class<?> type : getClasses(packageName)) {
-                getOrCreateMeta(type);
+                if (type.isEnum()) {
+                    FixEnumMeta<? extends Enum> enumMeta = FixEnumMeta.forEnumClass((Class<? extends Enum>) type);
+                    addMeta(enumMeta);
+                } else {
+                    getOrCreateComponentMeta(type);
+                }
             }
             return this;
         } catch (Exception e) {
@@ -80,11 +95,19 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
         }
     }
 
+    public FixEnumRepository addMeta(final FixEnumMeta<?> newMeta) {
+        FixEnumMeta<?> prevMeta = enumMetas.putIfAbsent(newMeta.getType(), newMeta);
+        Preconditions.checkArgument(prevMeta == null,
+                "Meta for type [%s] has already been registered! Each type should only be registered exactly once.",
+                newMeta.getType());
+        return this;
+    }
+
     @Override
-    public FixMetaRepository addMeta(final FixBlockMeta<?> newMeta) {
+    public FixEnumRepository addMeta(final FixBlockMeta<?> newMeta) {
         Preconditions.checkNotNull(newMeta, "newMeta");
 
-        final FixBlockMeta<?> prevMeta = allMetas.putIfAbsent(newMeta.getType(), newMeta);
+        final FixBlockMeta<?> prevMeta = componentMetas.putIfAbsent(newMeta.getType(), newMeta);
         Preconditions.checkArgument(prevMeta == null,
                 "Meta for type [%s] has already been registered! Each type should only be registered exactly once.",
                 newMeta.getType());
@@ -103,9 +126,9 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> FixBlockMeta<T> getOrCreateMeta(Class<T> type) {
-        if (allMetas.containsKey(type)) {
-            return (FixBlockMeta<T>) allMetas.get(type);
+    public <T> FixBlockMeta<T> getOrCreateComponentMeta(Class<T> type) {
+        if (componentMetas.containsKey(type)) {
+            return (FixBlockMeta<T>) componentMetas.get(type);
         }
 
         final FixBlockMeta<T> newMeta = FixMetaScanner.scanClass(type, this);
@@ -115,7 +138,7 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
 
     @Override
     public boolean containsMeta(Class<?> type) {
-        return allMetas.containsKey(type);
+        return componentMetas.containsKey(type);
     }
 
     @Override
@@ -125,15 +148,15 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> FixBlockMeta<T> getMeta(Class<T> type) {
-        final FixBlockMeta<T> meta = (FixBlockMeta<T>) allMetas.get(type);
+    public <T> FixBlockMeta<T> getComponentMeta(Class<T> type) {
+        final FixBlockMeta<T> meta = (FixBlockMeta<T>) componentMetas.get(type);
         if (meta == null) {
             throw new IllegalStateException("No meta for class [" + type + "] found. Probably it was not added to repository.");
         }
         return meta;
     }
 
-    public FixMessageMeta<?> getMeta(String fixMessageType) {
+    public FixMessageMeta<?> getMessageMeta(String fixMessageType) {
         final FixMessageMeta<?> meta = messageMetas.get(fixMessageType);
         if (meta == null) {
             throw new IllegalStateException("No meta for message type [" + fixMessageType + "] found. Probably it was not added to repository.");
@@ -149,7 +172,9 @@ public final class FixMetaRepositoryImpl implements FixMetaRepository {
      */
     private static Set<Class<?>> getClasses(final String packageName) {
         final Reflections reflections = new Reflections(packageName);
-        final Set<Class<?>> allClasses = reflections.getTypesAnnotatedWith(FixMessage.class);
+        final Set<Class<?>> allClasses = new HashSet<>();
+        allClasses.addAll(reflections.getTypesAnnotatedWith(FixMessage.class));
+        allClasses.addAll(reflections.getTypesAnnotatedWith(FixEnum.class));
 
         // Process classes in constant order
         final TreeSet<Class<?>> sortedClasses = new TreeSet<>(new Comparator<Class<?>>() {

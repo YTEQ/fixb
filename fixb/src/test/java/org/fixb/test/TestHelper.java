@@ -26,6 +26,8 @@ public class TestHelper {
             if (result.length() > 0) result.append(SOH);
             result.append(field);
         }
+
+        System.out.println(result);
         return result.toString();
     }
 }

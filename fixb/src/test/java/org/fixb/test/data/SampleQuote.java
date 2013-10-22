@@ -16,22 +16,23 @@
 
 package org.fixb.test.data;
 
-import org.fixb.annotations.FixBlock;
-import org.fixb.annotations.FixField;
-import org.fixb.annotations.FixGroup;
-import org.fixb.annotations.FixMessage;
+import org.fixb.annotations.*;
 
 import java.util.List;
 
+import static org.fixb.annotations.FixMessage.Field;
 import static org.fixb.test.data.TestModels.QuoteFixFields.*;
 
 @FixMessage(type = "Q",
-        header = @FixMessage.Field(tag = HDR, value = "TEST"),
-        body = {@FixMessage.Field(tag = 18, value = "BODY1"),
-                @FixMessage.Field(tag = 19, value = "BODY2")})
+        header = @Field(tag = HDR, value = "TEST"),
+        body = {@Field(tag = 18, value = "BODY1"),
+                @Field(tag = 19, value = "BODY2")})
 public class SampleQuote extends TestModels.BasicQuote {
+
+    @FixEnum
     public static enum Side {
-        BUY, SELL
+        @FixValue("0") BUY,
+        @FixValue("1") SELL;
     }
 
     @FixField(tag = SIDE)

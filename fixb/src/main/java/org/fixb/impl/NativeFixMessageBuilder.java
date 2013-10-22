@@ -18,6 +18,8 @@ package org.fixb.impl;
 
 import org.fixb.FixException;
 import org.fixb.FixMessageBuilder;
+import org.fixb.meta.FixEnumMeta;
+import org.fixb.meta.FixEnumRepository;
 import org.fixb.meta.FixFieldMeta;
 import org.fixb.meta.FixGroupMeta;
 import org.joda.time.*;
@@ -39,20 +41,27 @@ import static org.fixb.impl.FormatConstants.*;
  * @author vladyslav.yatsenko
  */
 public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
+    private final FixEnumRepository fixEnumRepository;
     private final StringBuilder head = new StringBuilder();
     private final StringBuilder body;
     private String beginString;
 
     public static final class Factory implements FixMessageBuilder.Factory<String, NativeFixMessageBuilder> {
 
+        private final FixEnumRepository fixEnumRepository;
+
+        public Factory(FixEnumRepository fixEnumRepository) {
+            this.fixEnumRepository = fixEnumRepository;
+        }
+
         @Override
         public NativeFixMessageBuilder create() {
-            return new NativeFixMessageBuilder(new StringBuilder());
+            return new NativeFixMessageBuilder(fixEnumRepository, new StringBuilder());
         }
 
         @Override
         public NativeFixMessageBuilder createWithMessage(String fixMessage) {
-            return new NativeFixMessageBuilder(new StringBuilder(fixMessage));
+            return new NativeFixMessageBuilder(fixEnumRepository, new StringBuilder(fixMessage));
         }
     }
 
@@ -137,7 +146,8 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
     public FixMessageBuilder<String> setField(int tag, String value, boolean header) {
         switch (tag) {
             case BEGIN_STRING_TAG:
-                beginString = value; break;
+                beginString = value;
+                break;
             default:
                 appendTag(tag, header).append(value).append(SOH);
         }
@@ -146,7 +156,10 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
 
     @Override
     public FixMessageBuilder<String> setField(int tag, Enum<?> value, boolean header) {
-        return setField(tag, value.ordinal(), header);
+        FixEnumMeta<? extends Enum<?>> fixEnumMeta = fixEnumRepository.getFixEnumMeta(value.getDeclaringClass());
+        return (fixEnumMeta == null) ?
+                setField(tag, value.ordinal(), header) :
+                setField(tag, fixEnumMeta.fixValueForEnum(value), header);
     }
 
     @Override
@@ -182,7 +195,8 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
         return this;
     }
 
-    private NativeFixMessageBuilder(final StringBuilder body) {
+    private NativeFixMessageBuilder(FixEnumRepository fixEnumRepository, final StringBuilder body) {
+        this.fixEnumRepository = fixEnumRepository;
         this.body = body;
     }
 

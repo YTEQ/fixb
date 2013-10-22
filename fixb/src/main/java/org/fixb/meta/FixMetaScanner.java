@@ -64,7 +64,7 @@ public class FixMetaScanner {
         Preconditions.checkNotNull(model, "model");
         Preconditions.checkNotNull(model, "repository");
         if (repository.containsMeta(model)) {
-            return repository.getMeta(model);
+            return repository.getComponentMeta(model);
         }
 
         final FixBlockMeta<T> result = scanClass(model, repository);
@@ -74,7 +74,7 @@ public class FixMetaScanner {
 
     static <T> FixBlockMeta<T> scanClass(Class<T> model, FixMetaRepository repository) {
         if (repository.containsMeta(model)) {
-            return repository.getMeta(model);
+            return repository.getComponentMeta(model);
         }
 
         final FixBlockMeta<T> result;
@@ -168,7 +168,7 @@ public class FixMetaScanner {
         for (int i = 0; i < annotations.length; i++) {
             if (hasFixAnnotation(annotations[i], FixBlock.class)) {
                 final Class<?>[] paramTypes = constructor.getParameterTypes();
-                for (FixFieldMeta fixFieldMeta : repository.getMeta(paramTypes[i]).getFields()) {
+                for (FixFieldMeta fixFieldMeta : repository.getComponentMeta(paramTypes[i]).getFields()) {
                     ordered[offset++] = fixFields.get(fixFieldMeta.getTag());
                 }
             } else {
@@ -262,7 +262,7 @@ public class FixMetaScanner {
                                     fixGroupMeta(fixGroup.tag(),
                                             fixGroup.header(),
                                             fixGroup.optional(),
-                                            repository.getOrCreateMeta(componentType),
+                                            repository.getOrCreateComponentMeta(componentType),
                                             path);
                             fixFields.put(fixGroup.tag(), fieldMeta);
                         }

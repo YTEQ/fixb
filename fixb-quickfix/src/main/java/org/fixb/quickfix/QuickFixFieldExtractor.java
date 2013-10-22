@@ -169,7 +169,7 @@ public class QuickFixFieldExtractor implements FixFieldExtractor<Message> {
                 return (T) new DateTime(utcDate, DateTimeZone.UTC);
             } else if (type == Date.class) {
                 return (T) message.getUtcTimeStamp(tag);
-            } else if (Enum.class.isAssignableFrom(type)) {
+            } else if (type.isEnum()) {
                 int fieldValue = message.getInt(tag);
                 for (T enumValue : type.getEnumConstants()) {
                     int ordValue = ((Enum) enumValue).ordinal() + 1;

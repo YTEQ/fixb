@@ -18,10 +18,10 @@ package org.fixb.impl;
 
 import org.fixb.FixException;
 import org.fixb.FixFieldExtractor;
-import org.fixb.meta.FixBlockMeta;
-import org.fixb.meta.FixConstantFieldMeta;
-import org.fixb.meta.FixFieldMeta;
-import org.fixb.meta.FixGroupMeta;
+import org.fixb.meta.*;
+import org.joda.time.*;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.fixb.impl.FormatConstants.DATE_FORMAT;
+import static org.fixb.impl.FormatConstants.*;
 
 /**
  * I am an implementation of FixFieldExtractor. I extract extract field values straight from a raw (represented as a String) FIX message,
@@ -40,6 +40,11 @@ import static org.fixb.impl.FormatConstants.DATE_FORMAT;
  * @author vladyslav.yatsenko
  */
 public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
+    private final FixEnumRepository fixEnumRepository;
+
+    public NativeFixFieldExtractor(FixEnumRepository fixEnumRepository) {
+        this.fixEnumRepository = fixEnumRepository;
+    }
 
     @Override
     public <T> T getFieldValue(String fixMessage, Class<T> type, int tag, boolean optional) {
@@ -131,8 +136,13 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
     }
 
     private <T> T extractFieldValue(FieldCursor cursor, int tag, Class<T> type, boolean optional) {
+        T value = null;
         if (cursor.nextField(tag)) {
-            return toRequestedType(cursor.lastValue, type);
+            value = toRequestedType(cursor.lastValue, type);
+        }
+
+        if (value != null) {
+            return value;
         } else if (optional) {
             return null;
         } else {
@@ -143,8 +153,7 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
 
     private <T> T toRequestedType(String value, Class<T> type) {
         if (type == String.class) return (T) value;
-        if (type == Boolean.class || type == boolean.class)
-            return (T) Boolean.valueOf("Y".equals(value) || "1".equals(value));
+        if (type == Boolean.class || type == boolean.class) return (T) toBoolean(value);
         if (type == Character.class || type == char.class) return (T) (Character) value.charAt(0);
         if (type == Byte.class || type == byte.class) return (T) Byte.valueOf(value);
         if (type == Short.class || type == short.class) return (T) Short.valueOf(value);
@@ -152,12 +161,73 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
         if (type == Double.class || type == double.class) return (T) Double.valueOf(value);
         if (type == Float.class || type == float.class) return (T) Float.valueOf(value);
         if (type == BigDecimal.class) return (T) new BigDecimal(value);
-        if (type == Date.class) try {
-            return (T) new SimpleDateFormat(DATE_FORMAT).parse(value);
-        } catch (ParseException e) {
-            new FixException("Expected date, got: " + value);
-        }
+        if (type == Date.class) return (T) toDate(value, DATE_TIME_FORMAT);
+        if (type == LocalDate.class) return (T) toLocalDate(value);
+        if (type == Instant.class) return (T) toInstant(value);
+        if (type == DateTime.class) return (T) toDateTime(value);
+        if (type == LocalDateTime.class) return (T) toLocalDateTime(value);
+        if (type == LocalTime.class) return (T) toLocalTime(value);
+        if (type.isEnum()) return (T) toEnum(value, (Class<Enum>) type);
         return null;
     }
 
+    private LocalTime toLocalTime(String value) {
+        return LocalTime.parse(value, dtFormatterFor(value).withZoneUTC());
+    }
+
+    private DateTimeFormatter dtFormatterFor(String value) {
+        final String pattern;
+        switch (value.length()) {
+            case 8: pattern = value.indexOf(':') > 1 ? TIME_FORMAT : DATE_FORMAT; break;
+            case 12: pattern = TIME_FORMAT_WITH_MILLIS; break;
+            case 17: pattern = DATE_TIME_FORMAT; break;
+            case 21: pattern = DATE_TIME_FORMAT_WITH_MILLIS; break;
+            default: throw new FixException("Invalid date/time value: " + value);
+        }
+        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
+    }
+
+    private LocalDateTime toLocalDateTime(String value) {
+        return toDateTime(value).toLocalDateTime();
+    }
+
+    private DateTime toDateTime(String value) {
+        return DateTime.parse(value, dtFormatterFor(value));
+    }
+
+    private Instant toInstant(String value) {
+        return Instant.parse(value, dtFormatterFor(value));
+    }
+
+    private LocalDate toLocalDate(String value) {
+        return LocalDate.parse(value, dtFormatterFor(value));
+    }
+
+    private Boolean toBoolean(String value) {
+        return Boolean.valueOf("Y".equals(value) || "1".equals(value));
+    }
+
+    private Enum<?> toEnum(String value, Class<Enum> type) {
+        int fieldValue = Integer.valueOf(value);
+
+        if (fixEnumRepository.hasFixEnumMeta(type)) {
+            return fixEnumRepository.getFixEnumMeta(type).enumForFixValue(value);
+        }
+
+        for (Enum enumValue : type.getEnumConstants()) {
+            int ordValue = enumValue.ordinal() + 1;
+            if (ordValue == fieldValue) {
+                return enumValue;
+            }
+        }
+        throw new IllegalArgumentException("Invalid ordinal of enum type " + type + ": " + fieldValue);
+    }
+
+    private Date toDate(String value, String format) {
+        try {
+            return new SimpleDateFormat(format).parse(value);
+        } catch (ParseException e) {
+            throw new FixException("Expected date, got: " + value);
+        }
+    }
 }

@@ -24,7 +24,7 @@ import java.util.Collection;
  *
  * @author vladyslav.yatsenko
  */
-public interface FixMetaRepository {
+public interface FixMetaRepository extends FixEnumRepository {
     /**
      * @return all FixMessageMetas registered with the FixMetaRepositoryImpl singleton
      */
@@ -49,15 +49,15 @@ public interface FixMetaRepository {
      *
      * @param packageName a name of the package containing FIX mapped classes
      */
-    FixMetaRepository addPackage(String packageName);
+    FixEnumRepository addPackage(String packageName);
 
-    FixMetaRepository addMeta(FixBlockMeta<?> newMeta);
+    FixEnumRepository addMeta(FixBlockMeta<?> newMeta);
 
     boolean containsMeta(Class<?> type);
 
     boolean containsMeta(String fixMessageType);
 
-    <T> FixBlockMeta<T> getMeta(Class<T> type);
+    <T> FixBlockMeta<T> getComponentMeta(Class<T> type);
 
-    <T> FixBlockMeta<T> getOrCreateMeta(Class<T> type);
+    <T> FixBlockMeta<T> getOrCreateComponentMeta(Class<T> type);
 }
