@@ -25,26 +25,11 @@ import org.junit.Test;
 import java.util.List;
 
 import static junit.framework.Assert.*;
-import static org.fixb.meta.FixMetaRepositoryImplTest.Sample.Part;
+import static org.fixb.meta.MutableFixMetaDictionaryTest.Sample.Part;
 
-public class FixMetaRepositoryImplTest {
+public class MutableFixMetaDictionaryTest {
 
-    private FixMetaRepositoryImpl fixMetaRepository = new FixMetaRepositoryImpl();
-
-    @Test
-    public void testAddPackage() {
-        // Given
-        assertFalse(fixMetaRepository.containsMeta(Sample.class));
-
-        // When
-        fixMetaRepository.addPackage("org.fixb.meta");
-
-        // Then
-        final FixMessageMeta<?> meta = fixMetaRepository.getMetaForMessageType("TEST");
-        assertNotNull(meta);
-        assertEquals(Sample.class, meta.getType());
-        assertEquals("TEST", meta.getMessageType());
-    }
+    private MutableFixMetaDictionary fixMetaRepository = new MutableFixMetaDictionary();
 
     @Test
     public void testGetMetaForUnregisteredClassRegistersMessageType() {

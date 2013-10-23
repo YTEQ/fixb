@@ -26,12 +26,12 @@ import static org.fixb.test.data.TestModels.*;
 
 public class CommonFixAdapterTest extends AbstractFixAdapterTest {
     final CommonFixAdapter<Map<Integer, Object>> adapter =
-            new CommonFixAdapter<Map<Integer, Object>>("FIX.4.4", fixFieldExtractor, builderFactory, fixMetaRepository);
+            new CommonFixAdapter<>("FIX.4.4", fixFieldExtractor, builderFactory, fixMetaRepository);
 
     @Test
     public void testFromFixToMessage1() {
         // Given
-        final Map<Integer, Object> fixMessage = new HashMap<Integer, Object>();
+        final Map<Integer, Object> fixMessage = new HashMap<>();
         fixMessage.put(35, "M1");
         fixMessage.put(100, "VALUE");
 
@@ -45,7 +45,7 @@ public class CommonFixAdapterTest extends AbstractFixAdapterTest {
     @Test
     public void testFromFixToMessage2() {
         // Given
-        final Map<Integer, Object> fixMessage = new HashMap<Integer, Object>();
+        final Map<Integer, Object> fixMessage = new HashMap<>();
         fixMessage.put(35, "M2");
         fixMessage.put(100, "VALUE");
 

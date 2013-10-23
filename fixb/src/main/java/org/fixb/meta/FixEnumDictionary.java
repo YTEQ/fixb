@@ -7,7 +7,7 @@ package org.fixb.meta;
  * Time: 02:11
  * To change this template use File | Settings | File Templates.
  */
-public interface FixEnumRepository {
+public interface FixEnumDictionary {
     /**
      * @param enumType the enum type
      * @param <T>      the enum type

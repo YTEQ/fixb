@@ -19,8 +19,8 @@ package org.fixb.test.perf;
 import org.fixb.FixSerializer;
 import org.fixb.adapter.CommonFixAdapter;
 import org.fixb.impl.NativeFixSerializer;
-import org.fixb.meta.FixMetaRepository;
-import org.fixb.meta.FixMetaRepositoryImpl;
+import org.fixb.meta.FixMetaDictionary;
+import org.fixb.meta.FixMetaScanner;
 import org.fixb.quickfix.QuickFixFieldExtractor;
 import org.fixb.quickfix.QuickFixMessageBuilder;
 import org.fixb.quickfix.QuickFixSerializer;
@@ -40,7 +40,7 @@ import static org.fixb.test.perf.TestModels.SampleQuote.Side.SELL;
 public class NativeSerializerPerfTest {
 
     public static final String FIX_5_0 = "FIX.5.0";
-    private final FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl("org.fixb.test.perf");
+    private final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.test.perf");
     private final FixSerializer<Object> nativeSerializer = new NativeFixSerializer<>(FIX_5_0, fixMetaRepository);
     private final FixSerializer<Message> quickFixSerializer = new QuickFixSerializer(FIX_5_0, fixMetaRepository);
     private final CommonFixAdapter<Message> quickFixAdapter = new CommonFixAdapter<>(FIX_5_0,

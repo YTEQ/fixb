@@ -22,12 +22,10 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.fixb.FixException;
-import org.fixb.annotations.FixBlock;
-import org.fixb.annotations.FixField;
-import org.fixb.annotations.FixGroup;
-import org.fixb.annotations.FixMessage;
+import org.fixb.annotations.*;
 import org.joda.time.Instant;
 import org.joda.time.LocalDate;
+import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -43,13 +41,38 @@ import static org.fixb.meta.FixFieldMeta.fixFieldMeta;
 import static org.fixb.meta.FixFieldMeta.fixGroupMeta;
 
 /**
- * I can scan Java classes annotated with fixb annotations and build FIX mappings metadata. The FixMetaRepositoryImpl is used to optimise the scanning process, so that each class is scanned only once.
+ * I can scan Java classes annotated with FixB annotations and build FIX mappings metadata.
+ * The MutableFixMetaDictionary is used to optimise the scanning process, so that each class is scanned only once.
  *
  * @author vladyslav.yatsenko
  */
 public class FixMetaScanner {
+
     /**
-     * Scans the given class for FIX mapping annotations and adds the created FixBlockMeta to FixMetaRepositoryImpl.
+     * Scans the given packages for classes annotated with @FixMessage and @FixEnum and adds them to the resulting repository.
+     *
+     * @param packageNames a name of the package containing FIX mapped classes
+     */
+    public static FixMetaDictionary scanClassesIn(String... packageNames) {
+        final MutableFixMetaDictionary repository = new MutableFixMetaDictionary();
+        for (String packageName : packageNames) {
+            try {
+                for (Class<?> type : getClasses(packageName)) {
+                    if (type.isEnum()) {
+                        repository.addMeta(FixEnumMeta.forClass((Class<? extends Enum>) type));
+                    } else {
+                        repository.addMeta(scanClass(type, repository));
+                    }
+                }
+            } catch (Exception e) {
+                throw new IllegalStateException("Error registering classes in package " + packageName + ": " + e.getMessage(), e);
+            }
+        }
+        return repository;
+    }
+
+    /**
+     * Scans the given class for FIX mapping annotations.
      *
      * @param model the domain class to scan
      * @param <T>   the domain type to scan
@@ -57,10 +80,10 @@ public class FixMetaScanner {
      * @throws FixException if the given class is not properly annotated.
      */
     public static <T> FixBlockMeta<T> scanClass(Class<T> model) {
-        return scanClassAndAddToRepository(model, new FixMetaRepositoryImpl());
+        return scanClassAndAddToRepository(model, new MutableFixMetaDictionary());
     }
 
-    static <T> FixBlockMeta<T> scanClassAndAddToRepository(Class<T> model, FixMetaRepository repository) {
+    static <T> FixBlockMeta<T> scanClassAndAddToRepository(Class<T> model, MutableFixMetaDictionary repository) {
         Preconditions.checkNotNull(model, "model");
         Preconditions.checkNotNull(model, "repository");
         if (repository.containsMeta(model)) {
@@ -72,7 +95,7 @@ public class FixMetaScanner {
         return result;
     }
 
-    static <T> FixBlockMeta<T> scanClass(Class<T> model, FixMetaRepository repository) {
+    static <T> FixBlockMeta<T> scanClass(Class<T> model, MutableFixMetaDictionary repository) {
         if (repository.containsMeta(model)) {
             return repository.getComponentMeta(model);
         }
@@ -108,6 +131,31 @@ public class FixMetaScanner {
         }
 
         return result;
+    }
+
+    /**
+     * Scans all classes accessible from the context class loader which belong to the given package and subpackages.
+     *
+     * @param packageName the base package
+     * @return All found classes with FIX bindings.
+     */
+    private static Set<Class<?>> getClasses(final String packageName) {
+        final Reflections reflections = new Reflections(packageName);
+        final Set<Class<?>> allClasses = new HashSet<>();
+        allClasses.addAll(reflections.getTypesAnnotatedWith(FixMessage.class));
+        allClasses.addAll(reflections.getTypesAnnotatedWith(FixEnum.class));
+
+        // Process classes in constant order
+        final TreeSet<Class<?>> sortedClasses = new TreeSet<>(new Comparator<Class<?>>() {
+            @Override
+            public int compare(Class<?> o1, Class<?> o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+
+        sortedClasses.addAll(allClasses);
+
+        return sortedClasses;
     }
 
     private static int numberOfFixParameters(Constructor<?> constructor) {
@@ -147,7 +195,7 @@ public class FixMetaScanner {
 
     private static <T> List<FixFieldMeta> processFields(final Class<T> model,
                                                         final Optional<Constructor<T>> constructor,
-                                                        final FixMetaRepository repository) {
+                                                        final MutableFixMetaDictionary repository) {
         final ImmutableMap<Integer, FixFieldMeta> fixFields = scanFields(model, repository);
 
         if (constructor.isPresent()) {
@@ -162,7 +210,7 @@ public class FixMetaScanner {
     private static int orderFixFields(Constructor<?> constructor,
                                       ImmutableMap<Integer, FixFieldMeta> fixFields,
                                       FixFieldMeta[] ordered,
-                                      FixMetaRepository repository,
+                                      MutableFixMetaDictionary repository,
                                       int offset) {
         final Annotation[][] annotations = constructor.getParameterAnnotations();
         for (int i = 0; i < annotations.length; i++) {
@@ -217,7 +265,7 @@ public class FixMetaScanner {
     }
 
     private static <T> ImmutableMap<Integer, FixFieldMeta> scanFields(final Class<T> model,
-                                                                      final FixMetaRepository repository,
+                                                                      final MutableFixMetaDictionary repository,
                                                                       final Field... parentPath) {
         Map<Integer, FixFieldMeta> fixFields = Maps.newLinkedHashMap();
 

@@ -20,7 +20,7 @@ import org.fixb.FixAdapter;
 import org.fixb.impl.FieldCursor;
 import org.fixb.meta.FixFieldMeta;
 import org.fixb.meta.FixMessageMeta;
-import org.fixb.meta.FixMetaRepository;
+import org.fixb.meta.FixMetaDictionary;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,12 +34,12 @@ import static org.fixb.FixConstants.MSG_TYPE_TAG;
  */
 public class StreamingAdapter implements FixAdapter<Object, String> {
 
-    private final FixMetaRepository fixMetaRepository;
+    private final FixMetaDictionary fixMetaRepository;
 
     /**
      * @param fixMetaRepository a FIX mapping meta repository
      */
-    public StreamingAdapter(FixMetaRepository fixMetaRepository) {
+    public StreamingAdapter(FixMetaDictionary fixMetaRepository) {
         this.fixMetaRepository = fixMetaRepository;
     }
 

@@ -17,7 +17,8 @@
 package org.fixb;
 
 import org.fixb.adapter.CommonFixAdapter;
-import org.fixb.meta.FixMetaRepositoryImpl;
+import org.fixb.meta.FixMetaDictionary;
+import org.fixb.meta.FixMetaScanner;
 import org.fixb.quickfix.FixMetaDataDictionary;
 import org.fixb.quickfix.QuickFixFieldExtractor;
 import org.fixb.quickfix.QuickFixMessageBuilder;
@@ -30,11 +31,10 @@ import static org.fixb.quickfix.QuickFixMessageBuilder.fixMessage;
 import static org.fixb.quickfix.test.data.TestModels.*;
 
 public class CommonFixAdapterWithQuickFixTest {
-    private final FixMetaRepositoryImpl fixMetaRepository = new FixMetaRepositoryImpl("org.fixb");
-    private final FixAdapter<Object, Message> adapter = new CommonFixAdapter<Message>("FIX.5.0",
+    private final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.quickfix.test.data");
+    private final FixAdapter<Object, Message> adapter = new CommonFixAdapter<>("FIX.5.0",
             new QuickFixFieldExtractor(),
-            new QuickFixMessageBuilder
-                    .Factory(),
+            new QuickFixMessageBuilder.Factory(),
             fixMetaRepository);
 
     @Test

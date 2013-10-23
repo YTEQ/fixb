@@ -18,8 +18,7 @@ package org.fixb.impl;
 
 import org.fixb.FixException;
 import org.fixb.meta.FixEnumMeta;
-import org.fixb.meta.FixEnumRepository;
-import org.fixb.test.data.SampleQuote;
+import org.fixb.meta.FixEnumDictionary;
 import org.joda.time.*;
 import org.junit.Test;
 
@@ -28,7 +27,6 @@ import java.math.BigDecimal;
 import static org.fixb.FixConstants.BEGIN_STRING_TAG;
 import static org.fixb.test.TestHelper.fix;
 import static org.fixb.test.data.SampleQuote.Side;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -36,11 +34,11 @@ import static org.mockito.Mockito.when;
 /**
  */
 public class NativeFixMessageBuilderTest {
-    private final FixEnumRepository fixEnumRepository = mock(FixEnumRepository.class);
-    private final NativeFixMessageBuilder builder = new NativeFixMessageBuilder.Factory(fixEnumRepository).create();
+    private final FixEnumDictionary fixEnumDictionary = mock(FixEnumDictionary.class);
+    private final NativeFixMessageBuilder builder = new NativeFixMessageBuilder.Factory(fixEnumDictionary).create();
 
     {
-        when(fixEnumRepository.getFixEnumMeta(Side.class)).thenReturn(FixEnumMeta.forEnumClass(Side.class));
+        when(fixEnumDictionary.getFixEnumMeta(Side.class)).thenReturn(FixEnumMeta.forClass(Side.class));
     }
 
     @Test

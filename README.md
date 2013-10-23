@@ -66,8 +66,8 @@ public class FxQuote extends BaseQuote {
 To start serializing your POJOs into FIX messages and vice versa it's enough to create an instance of a FixSerializer as below:
 
 ```java
-FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl("my.fix.classes.package");
-FixSerializer<Object> fixSerializer = new NativeFixSerializer<>("FIX.5.0", fixMetaRepository);
+FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("my.fix.classes.package");
+FixSerializer<Object> fixSerializer = new NativeFixSerializer<>("FIX.5.0", fixMetaDictionary);
 ```
 
 And actually using the FixSerializer:

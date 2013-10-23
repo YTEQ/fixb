@@ -35,11 +35,11 @@ import static org.fixb.FixConstants.BEGIN_STRING_TAG;
 import static org.fixb.FixConstants.MSG_TYPE_TAG;
 
 /**
- * A QuickFix DataDictionary based on the metadata provided by FixMetaRepositoryImpl. FixMetaRepositoryImpl must be initialised
+ * A QuickFix DataDictionary based on the metadata provided by MutableFixMetaDictionary. MutableFixMetaDictionary must be initialised
  * before creation of an instance of DynamicDataDictionary.
  *
  * @author vladyslav.yatsenko
- * @see org.fixb.meta.FixMetaRepositoryImpl
+ * @see org.fixb.meta.MutableFixMetaDictionary
  */
 public class FixMetaDataDictionary extends DataDictionary {
     private static final String FIXT_PREFIX = "FIXT";
@@ -77,13 +77,13 @@ public class FixMetaDataDictionary extends DataDictionary {
 
     private static final Map<Integer, String> TRAILER_FIELDS = ImmutableMap.of(10, "CheckSum");
 
-    public FixMetaDataDictionary(final String fixProtocolVersion, FixMetaRepository fixMetaRepository) throws ConfigError {
+    public FixMetaDataDictionary(final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) throws ConfigError {
         super(generateDictionaryXml(fixProtocolVersion, fixMetaRepository));
         setCheckFieldsOutOfOrder(false);
         setCheckUnorderedGroupFields(false);
     }
 
-    private static InputStream generateDictionaryXml(final String fixProtocolVersion, FixMetaRepository fixMetaRepository) {
+    private static InputStream generateDictionaryXml(final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) {
         final Map<FixFieldMeta, String> fields = new LinkedHashMap<FixFieldMeta, String>();
         final Map<Integer, String> fieldNames = new LinkedHashMap<Integer, String>();
         final XMLOutputFactory factory = XMLOutputFactory.newInstance();
@@ -145,7 +145,7 @@ public class FixMetaDataDictionary extends DataDictionary {
         }
     }
 
-    private static void writeHeader(final XMLStreamWriter writer, final String fixProtocolVersion, FixMetaRepository fixMetaRepository) throws XMLStreamException {
+    private static void writeHeader(final XMLStreamWriter writer, final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) throws XMLStreamException {
         if (isLessThan50Version(fixProtocolVersion)) {
             writer.writeStartElement(HEADER);
             for (Map.Entry<Integer, String> field : HEADER_FIELDS.entrySet()) {

@@ -18,7 +18,7 @@ package org.fixb.quickfix;
 
 import org.fixb.FixException;
 import org.fixb.FixSerializer;
-import org.fixb.meta.FixMetaRepository;
+import org.fixb.meta.FixMetaDictionary;
 import quickfix.ConfigError;
 import quickfix.DataDictionary;
 import quickfix.InvalidMessage;
@@ -32,7 +32,7 @@ import quickfix.Message;
 public class QuickFixSerializer implements FixSerializer<Message> {
     private final DataDictionary dataDictionary;
 
-    public QuickFixSerializer(final String fixVersion, FixMetaRepository fixMetaRepository) {
+    public QuickFixSerializer(final String fixVersion, FixMetaDictionary fixMetaRepository) {
         this.dataDictionary = initDataDictionary(fixVersion, fixMetaRepository);
     }
 
@@ -41,7 +41,7 @@ public class QuickFixSerializer implements FixSerializer<Message> {
         return message.toString();
     }
 
-    private DataDictionary initDataDictionary(final String fixVersion, FixMetaRepository fixMetaRepository) {
+    private DataDictionary initDataDictionary(final String fixVersion, FixMetaDictionary fixMetaRepository) {
         try {
             return new FixMetaDataDictionary(fixVersion, fixMetaRepository);
         } catch (ConfigError e) {

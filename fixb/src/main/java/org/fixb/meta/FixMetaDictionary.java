@@ -24,9 +24,9 @@ import java.util.Collection;
  *
  * @author vladyslav.yatsenko
  */
-public interface FixMetaRepository extends FixEnumRepository {
+public interface FixMetaDictionary extends FixEnumDictionary {
     /**
-     * @return all FixMessageMetas registered with the FixMetaRepositoryImpl singleton
+     * @return all FixMessageMetas registered with the FixMetaDictionary singleton
      */
     Collection<FixMessageMeta<?>> getAllMessageMetas();
 
@@ -43,21 +43,4 @@ public interface FixMetaRepository extends FixEnumRepository {
      * @throws IllegalStateException if no meta instance found.
      */
     <T> FixMessageMeta<T> getMetaForMessageType(String fixMessageType);
-
-    /**
-     * Scans the given package for classes annotated with @FixMessage and adds them to repository.
-     *
-     * @param packageName a name of the package containing FIX mapped classes
-     */
-    FixEnumRepository addPackage(String packageName);
-
-    FixEnumRepository addMeta(FixBlockMeta<?> newMeta);
-
-    boolean containsMeta(Class<?> type);
-
-    boolean containsMeta(String fixMessageType);
-
-    <T> FixBlockMeta<T> getComponentMeta(Class<T> type);
-
-    <T> FixBlockMeta<T> getOrCreateComponentMeta(Class<T> type);
 }

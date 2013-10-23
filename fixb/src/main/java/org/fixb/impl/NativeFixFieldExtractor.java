@@ -40,10 +40,10 @@ import static org.fixb.impl.FormatConstants.*;
  * @author vladyslav.yatsenko
  */
 public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
-    private final FixEnumRepository fixEnumRepository;
+    private final FixEnumDictionary fixEnumDictionary;
 
-    public NativeFixFieldExtractor(FixEnumRepository fixEnumRepository) {
-        this.fixEnumRepository = fixEnumRepository;
+    public NativeFixFieldExtractor(FixEnumDictionary fixEnumDictionary) {
+        this.fixEnumDictionary = fixEnumDictionary;
     }
 
     @Override
@@ -212,8 +212,8 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
     private Enum<?> toEnum(String value, Class<Enum> type) {
         int fieldValue = Integer.valueOf(value);
 
-        if (fixEnumRepository.hasFixEnumMeta(type)) {
-            return fixEnumRepository.getFixEnumMeta(type).enumForFixValue(value);
+        if (fixEnumDictionary.hasFixEnumMeta(type)) {
+            return fixEnumDictionary.getFixEnumMeta(type).enumForFixValue(value);
         }
 
         for (Enum enumValue : type.getEnumConstants()) {

@@ -21,7 +21,7 @@ import org.fixb.FixException;
 import org.fixb.FixSerializer;
 import org.fixb.adapter.CommonFixAdapter;
 import org.fixb.meta.FixMessageMeta;
-import org.fixb.meta.FixMetaRepository;
+import org.fixb.meta.FixMetaDictionary;
 
 import static org.fixb.FixConstants.MSG_TYPE_TAG;
 
@@ -33,12 +33,12 @@ import static org.fixb.FixConstants.MSG_TYPE_TAG;
 public class NativeFixSerializer<T> implements FixSerializer<T> {
     private final FixAdapter<Object, String> fixAdapter;
     private final NativeFixFieldExtractor extractor;
-    private final FixMetaRepository fixMetaRepository;
+    private final FixMetaDictionary fixMetaRepository;
 
     /**
      * @param protocolVersion a FIX protocol version (used to build a header of the resulting FIX messages)
      */
-    public NativeFixSerializer(String protocolVersion, FixMetaRepository fixMetaRepository) {
+    public NativeFixSerializer(String protocolVersion, FixMetaDictionary fixMetaRepository) {
         this.fixMetaRepository = fixMetaRepository;
         this.extractor = new NativeFixFieldExtractor(fixMetaRepository);
         this.fixAdapter = new CommonFixAdapter<>(

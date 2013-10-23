@@ -19,17 +19,17 @@ package org.fixb.adapter;
 import org.fixb.FixFieldExtractor;
 import org.fixb.FixMessageBuilder;
 import org.fixb.meta.FixMessageMeta;
-import org.fixb.meta.FixMetaRepository;
+import org.fixb.meta.FixMetaDictionary;
 
 /**
  * I am an implementation of AbstractMetaFixAdapter which works with domain objects of any
- * type registered with the provided FixMetaRepositoryImpl.
+ * type registered with the provided FixMetaDictionary.
  *
  * @author vladyslav.yatsenko
  * @see AbstractMetaFixAdapter
  */
 public class CommonFixAdapter<M> extends AbstractMetaFixAdapter<Object, M> {
-    private final FixMetaRepository fixMetaRepository;
+    private final FixMetaDictionary fixMetaRepository;
 
     /**
      * @param protocolVersion   a FIX protocol version to use in the generated messages, e.g. "FIX.5.0"
@@ -42,7 +42,7 @@ public class CommonFixAdapter<M> extends AbstractMetaFixAdapter<Object, M> {
     public CommonFixAdapter(String protocolVersion,
                             FixFieldExtractor<M> fixFieldExtractor,
                             FixMessageBuilder.Factory<M, ? extends FixMessageBuilder<M>> fixMessageBuilder,
-                            FixMetaRepository fixMetaRepository) {
+                            FixMetaDictionary fixMetaRepository) {
         super(protocolVersion, fixFieldExtractor, fixMessageBuilder);
         this.fixMetaRepository = fixMetaRepository;
     }

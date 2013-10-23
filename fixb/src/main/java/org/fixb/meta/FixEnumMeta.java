@@ -16,7 +16,7 @@ public class FixEnumMeta<T extends Enum<T>> {
     private final Class<T> enumClass;
     private final BiMap<String, T> enumFixValues;
 
-    public static <T extends Enum<T>> FixEnumMeta<T> forEnumClass(Class<T> type) {
+    public static <T extends Enum<T>> FixEnumMeta<T> forClass(Class<T> type) {
         if (!type.isEnum()) {
             throw new FixException("Expected an enum class, but got [" + type.getName() + "].");
         }

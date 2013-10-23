@@ -17,16 +17,33 @@
 package org.fixb.meta;
 
 import org.fixb.test.data.SampleQuote;
+import org.fixb.test.data.TestModels;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertSame;
+import static org.junit.Assert.*;
 
 public class FixMetaScannerTest {
+
+    @Test
+    public void canFindAndLoadFixClassesInAPackage() {
+        // When
+        final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.test.data");
+
+        // Then
+        assertNotNull(fixMetaRepository.getMetaForMessageType("Q"));
+        assertNotNull(fixMetaRepository.getMetaForMessageType("M1"));
+        assertNotNull(fixMetaRepository.getMetaForMessageType("M2"));
+        assertNotNull(fixMetaRepository.getMetaForClass(SampleQuote.class));
+        assertNotNull(fixMetaRepository.getMetaForClass(TestModels.Message1.class));
+        assertNotNull(fixMetaRepository.getMetaForClass(TestModels.Message2.class));
+    }
+
     @Test
     public void testScanClass() {
+        // Given
+        final MutableFixMetaDictionary fixMetaRepository = new MutableFixMetaDictionary();
+
         // When
-        final FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl();
         final FixBlockMeta<SampleQuote> meta = FixMetaScanner.scanClassAndAddToRepository(SampleQuote.class, fixMetaRepository);
 
         // Then

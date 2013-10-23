@@ -18,8 +18,8 @@ package org.fixb.impl;
 
 import org.fixb.meta.FixBlockMeta;
 import org.fixb.meta.FixDynamicFieldMeta;
+import org.fixb.meta.FixEnumDictionary;
 import org.fixb.meta.FixEnumMeta;
-import org.fixb.meta.FixEnumRepository;
 import org.fixb.test.TestHelper;
 import org.joda.time.*;
 import org.junit.Test;
@@ -35,12 +35,12 @@ import static org.mockito.Mockito.mock;
 
 @SuppressWarnings("unchecked")
 public class NativeFixFieldExtractorTest {
-    private final FixEnumRepository fixEnumRepository = mock(FixEnumRepository.class);
-    private final NativeFixFieldExtractor extractor = new NativeFixFieldExtractor(fixEnumRepository);
+    private final FixEnumDictionary fixEnumDictionary = mock(FixEnumDictionary.class);
+    private final NativeFixFieldExtractor extractor = new NativeFixFieldExtractor(fixEnumDictionary);
 
     {
-        given(fixEnumRepository.hasFixEnumMeta(Side.class)).willReturn(true);
-        given(fixEnumRepository.getFixEnumMeta(Side.class)).willReturn(FixEnumMeta.forEnumClass(Side.class));
+        given(fixEnumDictionary.hasFixEnumMeta(Side.class)).willReturn(true);
+        given(fixEnumDictionary.getFixEnumMeta(Side.class)).willReturn(FixEnumMeta.forClass(Side.class));
     }
 
     @Test

@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * @author vladyslav.yatsenko
  * @see org.fixb.FixAdapter
- * @see org.fixb.meta.FixMetaRepositoryImpl
+ * @see org.fixb.meta.FixMetaDictionary
  */
 public abstract class AbstractMetaFixAdapter<T, M> implements FixAdapter<T, M> {
     private final String protocolVersion;

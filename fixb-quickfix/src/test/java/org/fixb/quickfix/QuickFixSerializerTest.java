@@ -18,7 +18,7 @@ package org.fixb.quickfix;
 
 import org.fixb.FixConstants;
 import org.fixb.FixSerializer;
-import org.fixb.meta.FixMetaRepositoryImpl;
+import org.fixb.meta.FixMetaDictionary;
 import org.fixb.meta.FixMetaScanner;
 import org.fixb.quickfix.test.data.TestModels;
 import org.junit.Test;
@@ -36,7 +36,7 @@ import static org.fixb.quickfix.test.data.TestModels.QuoteFixFields;
 
 public class QuickFixSerializerTest {
 
-    private static final FixMetaRepositoryImpl fixMetaRepository = new FixMetaRepositoryImpl("org.fixb");
+    private static final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb");
 
     private final FixSerializer<Message> serializer = new QuickFixSerializer("FIX.5.0", fixMetaRepository);
 

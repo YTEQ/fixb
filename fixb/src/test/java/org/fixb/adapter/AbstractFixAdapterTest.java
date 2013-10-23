@@ -18,8 +18,8 @@ package org.fixb.adapter;
 
 import org.fixb.FixFieldExtractor;
 import org.fixb.FixMessageBuilder;
-import org.fixb.meta.FixMetaRepository;
-import org.fixb.meta.FixMetaRepositoryImpl;
+import org.fixb.meta.FixMetaDictionary;
+import org.fixb.meta.FixMetaScanner;
 import org.junit.Before;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -32,7 +32,7 @@ import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
 
 public class AbstractFixAdapterTest {
-    final FixMetaRepository fixMetaRepository = new FixMetaRepositoryImpl();
+    final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.test");
     final FixFieldExtractor<Map<Integer, Object>> fixFieldExtractor = mock(FixFieldExtractor.class);
     final FixMessageBuilder<Map<Integer, Object>> fixMessageBuilder = mock(FixMessageBuilder.class);
     final FixMessageBuilder.Factory<Map<Integer, Object>, FixMessageBuilder<Map<Integer, Object>>>
@@ -41,8 +41,6 @@ public class AbstractFixAdapterTest {
 
     @Before
     public void setup() {
-        fixMetaRepository.addPackage("org.fixb.test");
-
         given(builderFactory.create()).willReturn(fixMessageBuilder);
 
         given(fixMessageBuilder.build()).willReturn(fixMessage);
