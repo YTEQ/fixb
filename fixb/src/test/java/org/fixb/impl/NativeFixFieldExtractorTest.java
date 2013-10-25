@@ -103,11 +103,10 @@ public class NativeFixFieldExtractorTest {
         final String fix = TestHelper.fix(
                 "101=20121010-10:10:10",
                 "102=20121010",
-                "103=20121010-10:10:10",
+                "103=20121010-10:10:10+05:30",
                 "104=10:10:10");
 
-        assertEquals(Instant.parse("2012-10-10T10:10:10"), extractor.getFieldValue(fix, Instant.class, 101, false));
-        assertEquals(DateTime.parse("2012-10-10T10:10:10"), extractor.getFieldValue(fix, DateTime.class, 103, false));
+        assertEquals(DateTime.parse("2012-10-10T10:10:10+0530"), extractor.getFieldValue(fix, DateTime.class, 103, false));
         assertEquals(LocalDateTime.parse("2012-10-10T10:10:10"), extractor.getFieldValue(fix, LocalDateTime.class, 101, false));
         assertEquals(LocalDate.parse("2012-10-10"), extractor.getFieldValue(fix, LocalDate.class, 102, false));
         assertEquals(LocalTime.parse("10:10:10"), extractor.getFieldValue(fix, LocalTime.class, 104, false));

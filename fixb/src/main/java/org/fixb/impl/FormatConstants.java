@@ -23,11 +23,13 @@ package org.fixb.impl;
  */
 public final class FormatConstants {
     public static final char SOH = 0x01;
-    public static final String DATE_FORMAT = "yyyyMMdd";
-    public static final String TIME_FORMAT = "HH:mm:ss";
-    public static final String DATE_TIME_FORMAT = DATE_FORMAT + "-" + TIME_FORMAT;
-    public static final String TIME_FORMAT_WITH_MILLIS = "HH:mm:ss.SSS";
-    public static final String DATE_TIME_FORMAT_WITH_MILLIS = DATE_FORMAT + "-" + TIME_FORMAT_WITH_MILLIS;
+    public static final String DATE = "yyyyMMdd";
+    public static final String TIME = "HH:mm:ss";
+    public static final String DATE_TIME = DATE + "-" + TIME;
+    public static final String TIME_WITH_MILLIS = "HH:mm:ss.SSS";
+    public static final String DATE_TIME_WITH_MILLIS = DATE + "-" + TIME_WITH_MILLIS;
+    public static final String DATE_WITH_TZ = TIME + "Z";
+    public static final String DATE_TIME_WITH_TZ = DATE_TIME + "Z";
 
     private FormatConstants() {
     }

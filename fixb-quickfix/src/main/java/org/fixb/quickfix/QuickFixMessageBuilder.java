@@ -96,11 +96,6 @@ public class QuickFixMessageBuilder extends QuickFixFieldMapBuilder<Message> {
     }
 
     @Override
-    public QuickFixFieldMapBuilder<Message> setField(int tag, Instant value, boolean header) {
-        return setField((header ? message.getHeader() : message), tag, value);
-    }
-
-    @Override
     public FixMessageBuilder<Message> setField(int tag, Date value, boolean header) {
         return setField((header ? message.getHeader() : message), tag, value);
     }

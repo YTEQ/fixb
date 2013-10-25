@@ -27,7 +27,6 @@ public class TestHelper {
             result.append(field);
         }
 
-        System.out.println(result);
         return result.toString();
     }
 }

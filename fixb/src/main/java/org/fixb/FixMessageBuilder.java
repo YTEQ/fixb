@@ -131,15 +131,6 @@ public abstract class FixMessageBuilder<M> {
     public abstract FixMessageBuilder<M> setField(int tag, DateTime value, boolean header);
 
     /**
-     * Sets the field identified by the given tag to the given <tt>Instant</tt> tag (converting it to UTC timestamp).
-     *
-     * @param header identifies whether the field is a header field
-     * @return the current builder instance.
-     * @see org.joda.time.Instant
-     */
-    public abstract FixMessageBuilder<M> setField(int tag, Instant value, boolean header);
-
-    /**
      * Sets the field identified by the given tag to the given <tt>java.util.Date</tt> tag (converting it to UTC timestamp).
      *
      * @param header identifies whether the field is a header field
@@ -221,8 +212,6 @@ public abstract class FixMessageBuilder<M> {
             setField(tag, (DateTime) value, header);
         } else if (value instanceof LocalTime) {
             setField(tag, (LocalTime) value, header);
-        } else if (value instanceof Instant) {
-            setField(tag, (Instant) value, header);
         } else if (value instanceof Boolean) {
             setField(tag, ((Boolean) value).booleanValue(), header);
         } else if (value instanceof Enum) {

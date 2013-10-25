@@ -17,6 +17,7 @@
 package org.fixb.quickfix;
 
 import org.fixb.FixMessageBuilder;
+import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Instant;
 import org.joda.time.LocalDate;
@@ -37,7 +38,7 @@ public class QuickFixMessageBuilderTest {
     @Test
     public void testBuild() throws FieldNotFound {
         // When
-        final Instant time = Instant.now();
+        final DateTime time = DateTime.now();
 
         final Message message = builder.setField(11, 'A', true)
                 .setField(12, 'Z', false)

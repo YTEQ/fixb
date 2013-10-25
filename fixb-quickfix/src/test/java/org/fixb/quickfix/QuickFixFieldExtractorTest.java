@@ -98,23 +98,13 @@ public class QuickFixFieldExtractorTest {
     }
 
     @Test
-    public void testGetInstantFieldValue() {
-        // Given
-        Instant time = Instant.parse("2012-10-10T10:10:10");
-        Message message = fixMessage().setField(10, time).build();
-
-        // When / Then
-        assertEquals(time, extractor.getFieldValue(message, Instant.class, 10, false));
-    }
-
-    @Test
     public void testGetBooleanFieldValue() {
         // Given
-        Instant time = Instant.parse("2012-10-10T10:10:10");
-        Message message = fixMessage().setField(10, time).build();
+        boolean value = true;
+        Message message = fixMessage().setField(10, "Y").build();
 
         // When / Then
-        assertEquals(time, extractor.getFieldValue(message, Instant.class, 10, false));
+        assertEquals(value, extractor.getFieldValue(message, boolean.class, 10, false));
     }
 
     @Test(expected = FixException.class)

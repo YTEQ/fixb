@@ -22,8 +22,11 @@ import org.fixb.meta.FixEnumDictionary;
 import org.fixb.meta.FixEnumMeta;
 import org.fixb.meta.FixFieldMeta;
 import org.fixb.meta.FixGroupMeta;
-import org.joda.time.*;
-import org.joda.time.format.DateTimeFormat;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormatterBuilder;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -75,6 +78,7 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
         final int bodyLength = headAndBody.length();
         final StringBuilder beginString = appendTag(new StringBuilder(bodyLength + 10), BEGIN_STRING_TAG).append(this.beginString).append(SOH);
         final StringBuilder message = appendTag(beginString, BODY_LENGTH_TAG).append(bodyLength).append(SOH).append(headAndBody);
+
         return appendTag(message, CHECKSUM_TAG).append(generateCheckSum(message)).toString();
     }
 
@@ -109,36 +113,30 @@ public final class NativeFixMessageBuilder extends FixMessageBuilder<String> {
 
     @Override
     public FixMessageBuilder<String> setField(int tag, LocalDate value, boolean header) {
-        return setField(tag, value.toString(DATE_FORMAT), header);
+        return setField(tag, value.toString(DATE), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, LocalTime value, boolean header) {
-        final String pattern = (value.getMillisOfSecond() == 0) ? TIME_FORMAT : TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getMillisOfSecond() == 0) ? TIME : TIME_WITH_MILLIS;
         return setField(tag, value.toString(pattern), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, LocalDateTime value, boolean header) {
-        final String pattern = (value.getMillisOfSecond() == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getMillisOfSecond() == 0) ? DATE_TIME : DATE_TIME_WITH_MILLIS;
         return setField(tag, value.toString(pattern), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, DateTime value, boolean header) {
-        final String pattern = (value.getMillisOfSecond() == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
-        return setField(tag, value.toString(pattern), header);
-    }
-
-    @Override
-    public FixMessageBuilder<String> setField(int tag, Instant value, boolean header) {
-        final String pattern = (value.get(DateTimeFieldType.millisOfSecond()) == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
-        return setField(tag, value.toString(DateTimeFormat.forPattern(pattern)), header);
+        final String pattern = DATE_TIME_WITH_TZ;
+        return setField(tag, new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter().withZone(value.getZone()).print(value), header);
     }
 
     @Override
     public FixMessageBuilder<String> setField(int tag, Date value, boolean header) {
-        final String pattern = (value.getTime() % 1000 == 0) ? DATE_TIME_FORMAT : DATE_TIME_FORMAT_WITH_MILLIS;
+        final String pattern = (value.getTime() % 1000 == 0) ? DATE_TIME : DATE_TIME_WITH_MILLIS;
         return setField(tag, new SimpleDateFormat(pattern).format(value), header);
     }
 

@@ -85,11 +85,6 @@ public abstract class QuickFixFieldMapBuilder<M extends FieldMap> extends FixMes
         }
 
         @Override
-        public QuickFixFieldMapBuilder<Group> setField(int tag, Instant value, boolean header) {
-            return setField(message, tag, value);
-        }
-
-        @Override
         public FixMessageBuilder<Group> setField(int tag, Date value, boolean header) {
             return setField(message, tag, value);
         }

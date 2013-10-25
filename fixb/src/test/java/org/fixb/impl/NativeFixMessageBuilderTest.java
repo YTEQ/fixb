@@ -27,6 +27,7 @@ import java.math.BigDecimal;
 import static org.fixb.FixConstants.BEGIN_STRING_TAG;
 import static org.fixb.test.TestHelper.fix;
 import static org.fixb.test.data.SampleQuote.Side;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -75,19 +76,17 @@ public class NativeFixMessageBuilderTest {
         builder.setField(11, new LocalDate("2012-02-01"));
         builder.setField(12, new LocalTime("15:15:15.123"));
         builder.setField(13, new LocalDateTime("2012-02-01"));
-        builder.setField(14, new DateTime("2012-02-01T01:00:00+0200"));
-        builder.setField(15, new Instant("2012-02-01T01:01:01"));
+        builder.setField(14, new DateTime("2012-02-01T01:00:00", DateTimeZone.forOffsetHours(2)));
 
         final String fix = builder.build();
 
         assertTrue("Fix message is incorrect", fix.matches(fix(
                 "8=FIX.5.0",
-                "9=91",
+                "9=75",
                 "11=20120201",
                 "12=15:15:15.123",
                 "13=20120201-00:00:00",
-                "14=20120131-23:00:00",
-                "15=20120201-01:01:01",
+                "14=20120201-01:00:00\\+0200",
                 "10=[0-9]+")));
     }
 

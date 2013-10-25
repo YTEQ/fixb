@@ -20,18 +20,9 @@ import org.fixb.FixException;
 import org.fixb.FixFieldExtractor;
 import org.fixb.meta.*;
 import org.joda.time.*;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.DateTimeFormatterBuilder;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static org.fixb.impl.FormatConstants.*;
+import java.util.*;
 
 /**
  * I am an implementation of FixFieldExtractor. I extract extract field values straight from a raw (represented as a String) FIX message,
@@ -163,9 +154,8 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
         if (type == Double.class || type == double.class) return (T) Double.valueOf(value);
         if (type == Float.class || type == float.class) return (T) Float.valueOf(value);
         if (type == BigDecimal.class) return (T) new BigDecimal(value);
-        if (type == Date.class) return (T) toDate(value, DATE_TIME_FORMAT);
+        if (type == Date.class) return (T) toDate(value);
         if (type == LocalDate.class) return (T) toLocalDate(value);
-        if (type == Instant.class) return (T) toInstant(value);
         if (type == DateTime.class) return (T) toDateTime(value);
         if (type == LocalDateTime.class) return (T) toLocalDateTime(value);
         if (type == LocalTime.class) return (T) toLocalTime(value);
@@ -173,36 +163,57 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
         return null;
     }
 
-    private LocalTime toLocalTime(String value) {
-        return LocalTime.parse(value, dtFormatterFor(value).withZoneUTC());
+    private LocalDate toLocalDate(String value) {
+        int[] f = extractDateFields(value);
+        return new LocalDate(f[0], f[1], f[2]);
     }
 
-    private DateTimeFormatter dtFormatterFor(String value) {
-        final String pattern;
-        switch (value.length()) {
-            case 8: pattern = value.indexOf(':') > 1 ? TIME_FORMAT : DATE_FORMAT; break;
-            case 12: pattern = TIME_FORMAT_WITH_MILLIS; break;
-            case 17: pattern = DATE_TIME_FORMAT; break;
-            case 21: pattern = DATE_TIME_FORMAT_WITH_MILLIS; break;
-            default: throw new FixException("Invalid date/time value: " + value);
-        }
-        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
+    private LocalTime toLocalTime(String value) {
+        int[] f = extractTimeField(value, 4, "UTCTimeOnly");
+        return new LocalTime(f[0], f[1], f[2], f[3]);
     }
 
     private LocalDateTime toLocalDateTime(String value) {
-        return toDateTime(value).toLocalDateTime();
+        int[] f = extractTimeField(value, 5, "UTCTimestamp");
+        int[] d = extractDateFields(f[0]);
+        return new LocalDateTime(d[0], d[1], d[2], f[1], f[2], f[3], f[4]);
     }
 
     private DateTime toDateTime(String value) {
-        return DateTime.parse(value, dtFormatterFor(value));
+        int[] f = extractTimeField(value, 6, "UTCTimestamp or TZTimestamp");
+        int[] d = extractDateFields(f[0]);
+        return new DateTime(d[0], d[1], d[2], f[1], f[2], f[3], DateTimeZone.forOffsetHoursMinutes(f[4], f[5]));
     }
 
-    private Instant toInstant(String value) {
-        return Instant.parse(value, dtFormatterFor(value));
+    private int[] extractDateFields(int value) {
+        return new int[]{
+                value / 10000,
+                value / 100 - value / 10000 * 100,
+                value - value / 100 * 100
+        };
     }
 
-    private LocalDate toLocalDate(String value) {
-        return LocalDate.parse(value, dtFormatterFor(value));
+    private int[] extractTimeField(String value, int fieldCount, String fixTypeName) {
+        if (value.length() < 5 && value.length() > 23) {
+            throw new FixException("Expected " + fixTypeName + ", got: " + value);
+        }
+        IntTokenizer tokenizer = new IntTokenizer(value, ":-+Z");
+        try {
+            return tokenizer.nextNWithDefault(fieldCount, 0);
+        } catch (NumberFormatException e) {
+            throw new FixException("Expected " + fixTypeName + ", got: " + value);
+        }
+    }
+
+    private int[] extractDateFields(String value) {
+        if (value.length() != 8) {
+            throw new FixException("Expected UTCDateOnly or LocalMktDate, got: " + value);
+        }
+        try {
+            return extractDateFields(Integer.valueOf(value));
+        } catch (NumberFormatException e) {
+            throw new FixException("Expected UTCDateOnly or LocalMktDate, got: " + value);
+        }
     }
 
     private Boolean toBoolean(String value) {
@@ -225,11 +236,31 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
         throw new IllegalArgumentException("Invalid ordinal of enum type " + type + ": " + fieldValue);
     }
 
-    private Date toDate(String value, String format) {
-        try {
-            return new SimpleDateFormat(format).parse(value);
-        } catch (ParseException e) {
-            throw new FixException("Expected date, got: " + value);
+    private Date toDate(String value) {
+        return toDateTime(value).toDate();
+    }
+
+    static class IntTokenizer {
+        private final StringTokenizer tokenizer;
+
+        IntTokenizer(String s, String delimiters) {
+            tokenizer = new StringTokenizer(s, delimiters);
+        }
+
+        boolean hasNext() {
+            return tokenizer.hasMoreTokens();
+        }
+
+        int next() {
+            return Integer.parseInt(tokenizer.nextToken());
+        }
+
+        int[] nextNWithDefault(int n, int def) {
+            int[] result = new int[n];
+            for (int i = 0; i < n; i++) {
+                result[i] = hasNext() ? next() : def;
+            }
+            return result;
         }
     }
 }
