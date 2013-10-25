@@ -1,7 +1,9 @@
 FixB (FIX Bindings)
 =====
 
-FixB is a library for Java/FIX bindings that simplifies serialization of Java objects to/from FIX protocol messages. The bindings are defined using Java annotations.
+FixB is a library for Java/FIX bindings that simplifies serialization of Java objects to/from FIX protocol messages.
+The bindings are defined using Java annotations.
+
 The library is especially useful when there is a need to interchange custom non-standard FIX messages.
 
 Example (tags are fictitious):
@@ -62,6 +64,9 @@ public class FxQuote extends BaseQuote {
     }
 }
 ```
+
+In addition, FixB supports bindings for JodaTime types, which can be bound to corresponding FIX date/time types.
+
 
 To start serializing your POJOs into FIX messages and vice versa it's enough to create an instance of a FixSerializer as below:
 
