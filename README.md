@@ -2,14 +2,21 @@ FixB (FIX Bindings)
 =====
 
 FixB is a library for Java/FIX bindings that simplifies serialization of Java objects to/from FIX protocol messages.
-The bindings are defined using Java annotations.
+The bindings are implemented using Java annotations.
 
 The library is especially useful when there is a need to interchange custom non-standard FIX messages.
 
 Features include:
 
-- No requirement for classes mutability as bindings done using
--
+* Custom FIX tags
+* Supports any protocol version as long as the format is FIX
+* No requirement for classes mutability, inheritance, constructor etc.
+* Model classes can be as complex as needed including composition and inheritance
+* Supports FIX fields, repeating groups, blocks/components
+* FIX bindings for enum types (with default behaviour based on ordinal value)
+* FIX bindings for JodaTime types
+* Repeating groups binding directly to java collections
+* Optional QuickFIX/J adapter (fixb-quickfix)
 
 Example (tags are fictitious):
 ```java
@@ -70,17 +77,15 @@ public class FxQuote extends BaseQuote {
 }
 ```
 
-In addition, FixB supports bindings for JodaTime types, which can be bound to corresponding FIX date/time types.
-
-
-To start serializing your POJOs into FIX messages and vice versa it's enough to create an instance of a FixSerializer as below:
+To start serializing your POJOs into FIX messages and vice versa it's enough to create an instance of a FixSerializer as
+below:
 
 ```java
 FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("my.fix.classes.package");
 FixSerializer<Object> fixSerializer = new NativeFixSerializer<>("FIX.5.0", fixMetaDictionary);
 ```
 
-And actually using the FixSerializer:
+And actually using the created FixSerializer:
 
 ```java
 FxQuote fxQuote = new FxQuote(...);
