@@ -27,7 +27,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The implementation of <tt>FixMessageBuilder</tt> based on QuickFIX/J library (<tt>quickfix.Message</tt>).
+ * A specific implementation of FixMessageBuilder that extends QuickFixFieldMapBuilder and is used to build objects of
+ * quickfix.Message type.
  *
  * @author vladyslav.yatsenko
  */

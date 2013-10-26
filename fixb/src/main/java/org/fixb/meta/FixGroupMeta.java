@@ -20,7 +20,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 
 /**
- * I am a FIX repeating groups metadata. I define mapping to a POJO field of a collection type.
+ * A FIX metadata that describes mapping between a FIX repeating group a class field of a collection type.
  *
  * @author vladyslav.yatsenko
  */

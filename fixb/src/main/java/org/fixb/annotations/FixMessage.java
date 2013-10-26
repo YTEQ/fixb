@@ -22,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to map a Java class to a FIX message type.
+ * An annotation used for binding a Java class to a FIX message type.
  *
  * @author vladyslav.yatsenko
  */

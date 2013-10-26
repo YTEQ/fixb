@@ -31,9 +31,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * The implementation of <tt>FixFieldExtractor</tt> based on QuickFIX/J library (<tt>quickfix.Message</tt>).
+ * An implementation of FixFieldExtractor that is used to extract data from quickfix.Message objects.
  *
  * @author vladyslav.yatsenko
+ * @see quickfix.Message
  */
 public class QuickFixFieldExtractor implements FixFieldExtractor<Message> {
     @Override

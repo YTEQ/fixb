@@ -24,8 +24,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * I am a base implementation of the FixAdapter interface. I leverage mapping of domain objects
- * to FIX. The process of retrieving the mapping configuration, FixMessageMeta, is defined in subclasses.
+ * A base implementation of the FixAdapter interface that in based on the FIX bindings metadata.
+ * The process of retrieving the mapping configuration, FixMessageMeta, is defined in subclasses.
  *
  * @author vladyslav.yatsenko
  * @see org.fixb.FixAdapter

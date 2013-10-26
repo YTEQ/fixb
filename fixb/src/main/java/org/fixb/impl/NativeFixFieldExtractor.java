@@ -25,8 +25,9 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- * I am an implementation of FixFieldExtractor. I extract extract field values straight from a raw (represented as a String) FIX message,
- * I use FieldCursor for that. I am the fastest implementation of FixFieldExtractor as I don't create any intermediate objects.
+ * An implementation of FixFieldExtractor that is used to extract field values straight from a raw string representation
+ * of a FIX message. It is the fastest implementation of FixFieldExtractor as it does not create any intermediate
+ * representation of extracted data.
  *
  * @author vladyslav.yatsenko
  */

@@ -22,7 +22,7 @@ import org.fixb.meta.FixMessageMeta;
 import org.fixb.meta.FixMetaDictionary;
 
 /**
- * I am an implementation of AbstractMetaFixAdapter which works with domain objects of any
+ * An implementation of AbstractMetaFixAdapter which works with domain objects of any
  * type registered with the provided FixMetaDictionary.
  *
  * @author vladyslav.yatsenko

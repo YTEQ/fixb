@@ -23,8 +23,11 @@ import java.lang.annotation.Target;
 
 /**
  * When used in front of a Java class field it defines mapping of that field to a FIX field and can be used to map
- * simple (single field) types only. It must be repeated in front of a constructor parameter that is used to initialize
- * the annotated field.
+ * simple (single field) types only.
+ *
+ * For the sake of some performance benefit a constructor based instantiation can be used, in which case corresponding
+ * constructor parameters must also be annotated with @FixField but with only tag specified, the rest of configuration
+ * will be retrieved from the field's annotation.
  *
  * @author vladyslav.yatsenko
  */

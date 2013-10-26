@@ -22,7 +22,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to map a field of a collection type to a FIX group.
+ * An annotation used to map a field of a collection type to a FIX group.
+ *
+ * For the sake of some performance benefit a constructor based instantiation can be used, in which case corresponding
+ * constructor parameters must be annotated with either @FixGroup or @FixField but with only tag specified, the rest of
+ * configuration will be retrieved from the field's annotation.
  *
  * @author vladyslav.yatsenko
  */

@@ -25,8 +25,7 @@ import java.util.Map;
 import static java.lang.String.format;
 
 /**
- * I am a repository of FIX metadata. I provide lookup methods to find FIX mapping metadata by Java object type or by FIX
- * message type.
+ * A mutable implementation of FixMetaDictionary.
  *
  * @author vladyslav.yatsenko
  */

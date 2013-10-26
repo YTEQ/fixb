@@ -19,7 +19,7 @@ package org.fixb.meta;
 import java.lang.reflect.Field;
 
 /**
- * I am a base class for FIX field metadata.
+ * A base class for FIX field bindings metadata.
  *
  * @author vladyslav.yatsenko
  */

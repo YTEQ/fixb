@@ -19,7 +19,8 @@ package org.fixb.meta;
 import java.util.List;
 
 /**
- * I am FIX message metadata. I define mappings between a Java class and a FIX message.
+ * A FIX message metadata that describes mapping between a Java class and a FIX message. It extends FixBlockMeta by
+ * adding a FIX message type that an associated class is bound to.
  *
  * @author vladyslav.yatsenko
  */

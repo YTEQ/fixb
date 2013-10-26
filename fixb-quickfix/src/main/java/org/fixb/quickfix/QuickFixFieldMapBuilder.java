@@ -29,6 +29,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * A base implementation of FixMessageBuilder that is used to build objects of quickfix.FieldMap type.
+ *
  * @param <M> a QuickFix message type, implementation of quickfix.FieldMap.
  * @author vladyslav.yatsenko
  */

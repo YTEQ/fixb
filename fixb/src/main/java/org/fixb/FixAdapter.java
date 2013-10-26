@@ -17,10 +17,11 @@
 package org.fixb;
 
 /**
- * I am a FIX model adapter interface and I work as a glue between FIX-enabled POJOs and third-party FIX libraries.
+ * An interface for FIX model adapter between FIX-mapped classes and FIX message representations, including ones
+ * supported by third-party libraries.
  *
- * @param <T> the type of domain objects (a FixAdapter instance per T)
- * @param <M> the type of FIX message objects (specific for the underlying FIX implementation,
+ * @param <T> the type of FIX-mapped domain objects (a FixAdapter instance per T)
+ * @param <M> the type of FIX message objects (specific for the underlying FIX protocol implementation,
  *            e.g. quickfix.Message for QuickFix/J)
  * @author vladyslav.yatsenko
  */
@@ -34,10 +35,10 @@ public interface FixAdapter<T, M> {
     T fromFix(M fixMessage);
 
     /**
-     * Converts the given domain object into a FIX message object specific to the underlying FIX library.
+     * Converts the given domain object into a FIX message object specific.
      *
      * @param data a domain object (a FIX-enabled POJO)
-     * @return a FIX message specific to the underlying FIX library.
+     * @return a FIX message specific to the underlying FIX protocol implementation.
      */
     M toFix(T data);
 }

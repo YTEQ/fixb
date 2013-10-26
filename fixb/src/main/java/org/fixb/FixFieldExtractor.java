@@ -21,7 +21,7 @@ import org.fixb.meta.FixBlockMeta;
 import java.util.Collection;
 
 /**
- * I am an extractor of FIX values and groups (group corresponds to a collection) by tag from a given FIX message.
+ * An extractor of FIX values and repeating groups (a group corresponds to a collection) by a tag from a given FIX message.
  *
  * @param <M> the type of FIX message objects
  * @author vladyslav.yatsenko

@@ -38,8 +38,8 @@ import static org.fixb.FixConstants.*;
 import static org.fixb.impl.FormatConstants.*;
 
 /**
- * I implement FixMessageBuilder and I can build raw (represented as a String) FIX messages ready for transmission.
- * I am the fastest implementation as I don't create any intermediate object.
+ * An implementation of FixMessageBuilder that is used to build raw (represented as a String) FIX messages ready for
+ * transmission. It it the fastest implementation as it does not create any intermediate objects for the extracted data.
  *
  * @author vladyslav.yatsenko
  */

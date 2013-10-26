@@ -19,7 +19,7 @@ package org.fixb.meta;
 import java.util.Collection;
 
 /**
- * I am a repository of FIX metadata. I provide lookup methods to find FIX mapping metadata by Java object type or by FIX
+ * A dictionary of FIX metadata. It provides lookup methods for FIX mapping metadata by Java class or by FIX
  * message type.
  *
  * @author vladyslav.yatsenko

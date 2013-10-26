@@ -25,7 +25,7 @@ import quickfix.InvalidMessage;
 import quickfix.Message;
 
 /**
- * The implementation of <tt>FixSerializer</tt> based on <tt>quickfix.Message</tt> from QuickFIX/J library.
+ * An implementation of FixSerializer that is used to serialize/deserialize quickfix.Message objects.
  *
  * @author vladyslav.yatsenko
  */

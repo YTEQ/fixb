@@ -27,7 +27,7 @@ import static java.util.Collections.unmodifiableList;
 
 
 /**
- * I represent FIX block metadata (a set of FIX fields and repeating groups).
+ * A FIX block metadata (a set of FIX fields and repeating groups), e.g. CParty.
  *
  * @param <T>
  * @author vladyslav.yatsenko

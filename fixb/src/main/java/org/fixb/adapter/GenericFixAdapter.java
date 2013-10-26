@@ -22,9 +22,9 @@ import org.fixb.FixMessageBuilder;
 import org.fixb.meta.FixMessageMeta;
 
 /**
- * I am an implementation of AbstractMetaFixAdapter that can serve only one
- * type of message or domain objects. A separate instance of GenericFixAdapter is required for each
- * domain object type that needs to be translated to/from a FIX message object of the type defined by <code>M</code>.
+ * An implementation of AbstractMetaFixAdapter that can serve only one type of message or domain objects. It implies
+ * that a separate instance of GenericFixAdapter is required for each domain object type that needs to be translated
+ * to/from a FIX message object of the type defined by <code>M</code>.
  *
  * @param <T> the type of Java objects to translate to/from FIX message objects.
  * @param <M> the type that represents FIX message objects.

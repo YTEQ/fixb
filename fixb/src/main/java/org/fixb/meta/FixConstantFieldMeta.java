@@ -17,7 +17,7 @@
 package org.fixb.meta;
 
 /**
- * I represent FIX field metadata for a static tag that has a value assigned and is not associated with a model class field.
+ * A FIX field metadata for a statically defined tag with a value that is not associated with a class field.
  *
  * @author vladyslav.yatsenko
  */

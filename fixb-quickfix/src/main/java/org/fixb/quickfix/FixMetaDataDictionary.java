@@ -35,8 +35,7 @@ import static org.fixb.FixConstants.BEGIN_STRING_TAG;
 import static org.fixb.FixConstants.MSG_TYPE_TAG;
 
 /**
- * A QuickFix DataDictionary based on the metadata provided by MutableFixMetaDictionary. MutableFixMetaDictionary must be initialised
- * before creation of an instance of DynamicDataDictionary.
+ * A QuickFIX/J DataDictionary based on the metadata provided by a FixMetaDictionary.
  *
  * @author vladyslav.yatsenko
  * @see org.fixb.meta.MutableFixMetaDictionary

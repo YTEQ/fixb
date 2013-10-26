@@ -21,7 +21,7 @@ import org.fixb.FixException;
 import java.lang.reflect.Field;
 
 /**
- * I define mapping of a FIX field to a POJO field.
+ * A metadata that describes mapping of a FIX field to a class field.
  *
  * @author vladyslav.yatsenko
  */

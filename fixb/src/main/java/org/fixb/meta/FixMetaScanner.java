@@ -41,8 +41,9 @@ import static org.fixb.meta.FixFieldMeta.fixFieldMeta;
 import static org.fixb.meta.FixFieldMeta.fixGroupMeta;
 
 /**
- * I can scan Java classes annotated with FixB annotations and build FIX mappings metadata.
- * The MutableFixMetaDictionary is used to optimise the scanning process, so that each class is scanned only once.
+ * Scans Java classes annotated with FixB annotations and builds FIX bindings metadata dictionary.
+ * The MutableFixMetaDictionary is used to optimise the scanning process allowing each class to be scanned only once
+ * i.e. some classes appear as components of other classes.
  *
  * @author vladyslav.yatsenko
  */

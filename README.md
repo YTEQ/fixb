@@ -6,6 +6,11 @@ The bindings are defined using Java annotations.
 
 The library is especially useful when there is a need to interchange custom non-standard FIX messages.
 
+Features include:
+
+- No requirement for classes mutability as bindings done using
+-
+
 Example (tags are fictitious):
 ```java
 @FixMessage(type = "Q")

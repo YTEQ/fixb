@@ -22,7 +22,7 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
- * I am a static factory for Collection types.
+ * A static factory for Collection types.
  *
  * @author vladyslav.yatsenko
  */

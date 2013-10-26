@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The @FixValue annotation defines a FIX constant mapped to the associated enum constant.
+ * An annotation that defines a FIX constant mapped to the associated enum constant.
  *
  * @author vladyslav.yatsenko
  * @see FixEnum

@@ -26,7 +26,8 @@ import org.fixb.meta.FixMetaDictionary;
 import static org.fixb.FixConstants.MSG_TYPE_TAG;
 
 /**
- * I implement FixSerializer and can serialize/deserialize instances of FIX annotated classes to/from raw FIX messages.
+ * An implementation of FixSerializer that is used to serialize/deserialize instances of FIX annotated classes to/from
+ * raw FIX messages.
  *
  * @author vladyslav.yatsenko
  */

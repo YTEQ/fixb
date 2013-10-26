@@ -10,7 +10,10 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
+ * A metadata for a FIX enum binding.
  *
+ * @author vladyslav.yatsenko
+ * @see FixEnumDictionary
  */
 public class FixEnumMeta<T extends Enum<T>> {
     private final Class<T> enumClass;

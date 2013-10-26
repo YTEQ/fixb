@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * I am a builder of FIX message objects, which consist of fields and groups.
+ * An abstract builder of FIX message objects including ones supported by third-party libraries.
  *
  * @author vladyslav.yatsenko
  */

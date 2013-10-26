@@ -17,7 +17,7 @@
 package org.fixb;
 
 /**
- * I am a runtime exception thrown whenever there is a problem during FixSerializer or FixAdapter execution.
+ * A runtime exception thrown whenever there is a problem during FixSerializer or FixAdapter execution.
  *
  * @author vladyslav.yatsenko
  */

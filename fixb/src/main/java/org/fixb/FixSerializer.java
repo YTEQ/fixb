@@ -17,7 +17,7 @@
 package org.fixb;
 
 /**
- * I serialize and deserialize arbitrary objects in FIX format to and from strings representation.
+ * A serializer of arbitrary objects in FIX format to raw FIX messages represented as strings.
  *
  * @param <M> the type of the FIX objects
  * @author vladyslav.yatsenko

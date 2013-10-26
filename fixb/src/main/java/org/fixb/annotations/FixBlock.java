@@ -24,8 +24,10 @@ import java.lang.annotation.Target;
 /**
  * When used on a type/class this annotation marks that class as a component that represents a re-usable set of fields.
  * Field references of the annotated class type within another class annotated with @FixBlock or @FixMessage must be
- * accompanied by this annotation too to identify the intention of mixing the fields in. If a constructor based instantiation
- * is used then corresponding constructor parameters must also be annotated with @FixBlock.
+ * accompanied by this annotation too to identify the intention of mixing the fields in.
+ *
+ * For the sake of some performance benefit a constructor based instantiation can be used, in which case corresponding
+ * constructor parameters must also be annotated with @FixBlock annotation.
  *
  * @author vladyslav.yatsenko
  */

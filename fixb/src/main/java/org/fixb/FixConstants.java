@@ -17,7 +17,7 @@
 package org.fixb;
 
 /**
- * I am a namespace for FIX protocol related constants used in the implementations of FixAdapter.
+ * A namespace for FIX protocol related constants used in the implementations of FixAdapter.
  *
  * @author vladyslav.yatsenko
  */

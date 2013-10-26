@@ -1,11 +1,10 @@
 package org.fixb.meta;
 
 /**
- * Created with IntelliJ IDEA.
- * User: vyatsenko
- * Date: 22/10/2013
- * Time: 02:11
- * To change this template use File | Settings | File Templates.
+ * A dictionary of FIX enum bindings.
+ *
+ * @author vladyslav.yatsenko
+ * @see FixEnumMeta
  */
 public interface FixEnumDictionary {
     /**

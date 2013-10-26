@@ -37,6 +37,10 @@ import static java.util.Arrays.asList;
 import static org.fixb.test.perf.TestModels.SampleQuote.Side.BUY;
 import static org.fixb.test.perf.TestModels.SampleQuote.Side.SELL;
 
+/**
+ * A performance test that runs different implementations of FixSerializer with preheating cycles and prints out the
+ * captured timings.
+ */
 public class NativeSerializerPerfTest {
 
     public static final String FIX_5_0 = "FIX.5.0";
@@ -48,9 +52,10 @@ public class NativeSerializerPerfTest {
 
     @Test
     public void run() {
-        final SampleQuote[] objectData = generateData(1000);
-        final Message[] quickFixData = new Message[1000];
-        final String[] fixData = new String[1000];
+        int messageCount = 1000;
+        final SampleQuote[] objectData = generateData(messageCount);
+        final Message[] quickFixData = new Message[messageCount];
+        final String[] fixData = new String[messageCount];
 
         measure("Iterations", 10, new Runnable() {
             @Override

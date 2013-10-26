@@ -22,7 +22,8 @@ import java.util.Map;
 import static org.fixb.impl.FormatConstants.SOH;
 
 /**
- * I keep track of the read position in a FIX message string.
+ * Can extract separate tag values from a FIX message string while keeping track of the read position in it. It is used
+ * in the implementation of NativeFixFieldExtractor.
  *
  * @author vladyslav.yatsenko
  */
