@@ -83,8 +83,8 @@ public class FixMetaDataDictionary extends DataDictionary {
     }
 
     private static InputStream generateDictionaryXml(final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) {
-        final Map<FixFieldMeta, String> fields = new LinkedHashMap<FixFieldMeta, String>();
-        final Map<Integer, String> fieldNames = new LinkedHashMap<Integer, String>();
+        final Map<FixFieldMeta, String> fields = new LinkedHashMap<>();
+        final Map<Integer, String> fieldNames = new LinkedHashMap<>();
         final XMLOutputFactory factory = XMLOutputFactory.newInstance();
 
         final StringWriter stream = new StringWriter();

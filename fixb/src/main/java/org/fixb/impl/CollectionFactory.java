@@ -32,21 +32,20 @@ public class CollectionFactory {
      * If the given an class in an interface, an ArrayList will be created for java.util.List
      * or java.util.Collection interfaces, and HashSet for java.util.Set interface.
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Collection<?>> T createCollection(Class<T> collClass) {
         if (!collClass.isInterface() && !Modifier.isAbstract(collClass.getModifiers())) {
             try {
                 return collClass.newInstance();
-            } catch (InstantiationException e) {
-                throw new FixException(e.getMessage(), e);
-            } catch (IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 throw new FixException(e.getMessage(), e);
             }
         } else if (List.class.isAssignableFrom(collClass)) {
-            return (T) new ArrayList<Object>();
+            return (T) new ArrayList<>();
         } else if (Set.class.isAssignableFrom(collClass)) {
-            return (T) new HashSet<Object>();
+            return (T) new HashSet<>();
         } else if (Collection.class.isAssignableFrom(collClass)) {
-            return (T) new ArrayList<Object>();
+            return (T) new ArrayList<>();
         } else {
             throw new IllegalArgumentException("Unknown collection type: " + collClass);
         }

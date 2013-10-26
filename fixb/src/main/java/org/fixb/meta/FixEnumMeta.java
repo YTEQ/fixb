@@ -2,12 +2,10 @@ package org.fixb.meta;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
-import com.google.common.collect.ImmutableMap;
 import org.fixb.FixException;
 import org.fixb.annotations.FixValue;
 
 import java.lang.reflect.Field;
-import java.util.Map;
 
 /**
  * A metadata for a FIX enum binding.

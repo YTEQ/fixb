@@ -91,7 +91,7 @@ public class QuickFixFieldExtractor implements FixFieldExtractor<Message> {
         try {
             final C result = CollectionFactory.createCollection(type);
             for (Group group : fieldMap.getGroups(tag)) {
-                final Map<FixFieldMeta, Object> values = new LinkedHashMap<FixFieldMeta, Object>();
+                final Map<FixFieldMeta, Object> values = new LinkedHashMap<>();
                 for (FixFieldMeta f : componentMeta.getFields()) {
                     if (!(f instanceof FixConstantFieldMeta)) {
                         Object fieldValue;
