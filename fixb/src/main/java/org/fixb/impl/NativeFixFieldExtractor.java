@@ -169,18 +169,18 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
     }
 
     private LocalTime toLocalTime(String value) {
-        int[] f = extractTimeField(value, 4, "UTCTimeOnly");
+        int[] f = extractTimeFields(value, 4, "UTCTimeOnly");
         return new LocalTime(f[0], f[1], f[2], f[3]);
     }
 
     private LocalDateTime toLocalDateTime(String value) {
-        int[] f = extractTimeField(value, 5, "UTCTimestamp");
+        int[] f = extractTimeFields(value, 5, "UTCTimestamp");
         int[] d = extractDateFields(f[0]);
         return new LocalDateTime(d[0], d[1], d[2], f[1], f[2], f[3], f[4]);
     }
 
     private DateTime toDateTime(String value) {
-        int[] f = extractTimeField(value, 6, "UTCTimestamp or TZTimestamp");
+        int[] f = extractTimeFields(value, 6, "UTCTimestamp or TZTimestamp");
         int[] d = extractDateFields(f[0]);
         return new DateTime(d[0], d[1], d[2], f[1], f[2], f[3], DateTimeZone.forOffsetHoursMinutes(f[4], f[5]));
     }
@@ -193,7 +193,7 @@ public class NativeFixFieldExtractor implements FixFieldExtractor<String> {
         };
     }
 
-    private int[] extractTimeField(String value, int fieldCount, String fixTypeName) {
+    private int[] extractTimeFields(String value, int fieldCount, String fixTypeName) {
         if (value.length() < 5 && value.length() > 23) {
             throw new FixException("Expected " + fixTypeName + ", got: " + value);
         }
