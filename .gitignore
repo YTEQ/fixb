@@ -1,8 +1,9 @@
+*.class
+target
+
 # IntelliJ Files #
 .idea
 *.iml
-
-*.class
 
 # Package Files #
 *.jar
