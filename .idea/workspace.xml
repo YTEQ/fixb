@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" name="Default" comment="" />
+    <ignored path="fix4j.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/FixBlockMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823340970" ignored="false" />
+    <file path="/pom.xml" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382838364938" ignored="false" />
+    <file path="/FixGroup.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382778677747" ignored="false" />
+    <file path="/FixSerializer.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825693605" ignored="false" />
+    <file path="/FixStreamSerializer.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1364090467081" ignored="false" />
+    <file path="/AbstractMetaFixAdapter.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382822499001" ignored="false" />
+    <file path="/TextFixMessageBuilder.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1364946761948" ignored="false" />
+    <file path="/DateTimeFormatters.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1364945038938" ignored="false" />
+    <file path="/StringFixFieldExtractor.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1373498454006" ignored="false" />
+    <file path="/StringFixMessageBuilderTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1364947109936" ignored="false" />
+    <file path="/fragment.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382404255886" ignored="false" />
+    <file path="/StringFixMessageBuilder.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1373416663636" ignored="false" />
+    <file path="/*.regexp" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1373414211391" ignored="false" />
+    <file path="/FixMessage.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382778695131" ignored="false" />
+    <file path="/a.dummy" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382127542197" ignored="false" />
+    <file path="/CollectionUtil.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1373496635968" ignored="false" />
+    <file path="/FixConstants.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825459146" ignored="false" />
+    <file path="/StringFixFieldExtractorTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1373498701437" ignored="false" />
+    <file path="/Dummy.txt" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382839045932" ignored="false" />
+    <file path="$PROJECT_DIR$/jpattern/src/main/java/org/jpattern/creational/Factory.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411636299" ignored="false" />
+    <file path="/Factory.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411119397" ignored="false" />
+    <file path="$PROJECT_DIR$/jpattern/src/main/java/org/jpattern/structural/LazyInitialisationProxy.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380410689560" ignored="false" />
+    <file path="/Proxy.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380409741734" ignored="false" />
+    <file path="$PROJECT_DIR$/jpattern/src/main/java/org/jpattern/structural/Flyweight.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411874139" ignored="false" />
+    <file path="/Provider.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380410840974" ignored="false" />
+    <file path="$PROJECT_DIR$/jpattern/src/test/java/org/jpattern/structural/LazyProxyTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411636299" ignored="false" />
+    <file path="/LazyInitialisationProxyTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380410941299" ignored="false" />
+    <file path="/LazyProxyTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380410502355" ignored="false" />
+    <file path="$PROJECT_DIR$/jpattern/src/test/java/org/jpattern/structural/FlyweightTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411052136" ignored="false" />
+    <file path="/Flyweight.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411647013" ignored="false" />
+    <file path="/LazyProxy.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1380411937087" ignored="false" />
+    <file path="/README.md" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382836166883" ignored="false" />
+    <file path="/NativeFixMessageBuilder.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823253559" ignored="false" />
+    <file path="/FormatConstants.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382729890650" ignored="false" />
+    <file path="/NativeFixMessageBuilderTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382742044972" ignored="false" />
+    <file path="/apache.xml" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382045226679" ignored="false" />
+    <file path="/GenericFixAdapter.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382822581211" ignored="false" />
+    <file path="/FixMetaRepositoryImpl.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382534603955" ignored="false" />
+    <file path="/NativeSerializerPerfTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382826445393" ignored="false" />
+    <file path="/NativeFixSerializer.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823308226" ignored="false" />
+    <file path="/FixAdapter.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825436232" ignored="false" />
+    <file path="/FixDynamicFieldMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823502461" ignored="false" />
+    <file path="/FixMetaRepository.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382562124040" ignored="false" />
+    <file path="/FixMetaScanner.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382824780100" ignored="false" />
+    <file path="/FixVersions.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382304292023" ignored="false" />
+    <file path="/FixValue.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382778813458" ignored="false" />
+    <file path="/FixEnum.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382778795968" ignored="false" />
+    <file path="/SampleQuote.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382396304222" ignored="false" />
+    <file path="/NativeFixFieldExtractor.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823164398" ignored="false" />
+    <file path="/QuickFixFieldExtractor.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825969016" ignored="false" />
+    <file path="/FixBlock.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382778537987" ignored="false" />
+    <file path="/FixMetaDataDictionary.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825910906" ignored="false" />
+    <file path="/FixEnumExtractor.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382401619101" ignored="false" />
+    <file path="/FixEnumMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823688654" ignored="false" />
+    <file path="/FixEnumRepository.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382404702745" ignored="false" />
+    <file path="/NativeFixFieldExtractorTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382479509279" ignored="false" />
+    <file path="/TestHelper.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382407558343" ignored="false" />
+    <file path="/FixMetaScannerTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382561277754" ignored="false" />
+    <file path="/MutableFixMetaRepositoryTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382562356316" ignored="false" />
+    <file path="/QuickFixFieldExtractorTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382742502924" ignored="false" />
+    <file path="/QuickFixMessageBuilderTest.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382742548997" ignored="false" />
+    <file path="/FixField.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382778508476" ignored="false" />
+    <file path="/CommonFixAdapter.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382822525156" ignored="false" />
+    <file path="/StreamingAdapter.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382822601184" ignored="false" />
+    <file path="/CollectionFactory.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382827108550" ignored="false" />
+    <file path="/FieldCursor.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823001231" ignored="false" />
+    <file path="/FixConstantFieldMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823462177" ignored="false" />
+    <file path="/FixEnumDictionary.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823624014" ignored="false" />
+    <file path="/FixFieldMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823644278" ignored="false" />
+    <file path="/FixGroupMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382823763382" ignored="false" />
+    <file path="/FixMessageMeta.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382824010406" ignored="false" />
+    <file path="/FixMetaDictionary.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382824079513" ignored="false" />
+    <file path="/MutableFixMetaDictionary.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382824849611" ignored="false" />
+    <file path="/FixException.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825463569" ignored="false" />
+    <file path="/FixFieldExtractor.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825555560" ignored="false" />
+    <file path="/FixMessageBuilder.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382825614586" ignored="false" />
+    <file path="/QuickFixFieldMapBuilder.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382826114481" ignored="false" />
+    <file path="/QuickFixMessageBuilder.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382826188401" ignored="false" />
+    <file path="/QuickFixSerializer.java" changelist="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" time="1382826265344" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules />
+    <ui_properties />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="fix4j" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="0" selection-start="979" selection-end="1015" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fixb-quickfix/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="0" selection-start="1280" selection-end="1280" vertical-scroll-proportion="0.9665871">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FixMetaDataDictionary.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/FixMetaDataDictionary.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="20" selection-start="3821" selection-end="3821" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="20" selection-start="800" selection-end="800" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuickFixFieldExtractor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixFieldExtractor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="93" column="75" selection-start="3865" selection-end="3865" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuickFixSerializer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixSerializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="75" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NativeSerializerPerfTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb-perf-test/src/main/java/org/fixb/test/perf/NativeSerializerPerfTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="12" selection-start="2409" selection-end="2409" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestModels.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb-perf-test/src/main/java/org/fixb/test/perf/TestModels.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="33" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FixEnumMeta.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/meta/FixEnumMeta.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="57" column="43" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollectionFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/impl/CollectionFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="32" selection-start="1110" selection-end="1110" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixException.java" />
+        <option value="$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixFieldExtractor.java" />
+        <option value="$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixMessageBuilder.java" />
+        <option value="$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixSerializer.java" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/CollectionUtil.java" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixFieldMapBuilder.java" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixMessageBuilder.java" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixSerializer.java" />
+        <option value="$PROJECT_DIR$/fixb-perf-test/src/main/java/org/fixb/test/perf/NativeSerializerPerfTest.java" />
+        <option value="$PROJECT_DIR$/fixb/src/main/java/org/fixb/meta/FixEnumMeta.java" />
+        <option value="$PROJECT_DIR$/fixb/src/main/java/org/fixb/impl/CollectionFactory.java" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixFieldExtractor.java" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/FixMetaDataDictionary.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/fixb/pom.xml" />
+        <option value="$PROJECT_DIR$/fixb-quickfix/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="fixb-quickfix" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="fixb-quickfix" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="fixb-perf-test" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="fixb-perf-test" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="fixb" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="fixb" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1440" />
+    <option name="height" value="874" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="2" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fixb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_directory_selection" value="$PROJECT_DIR$/fix4j/src/test/java/org/fix4j/impl" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/fixb-perf-test" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.fix4j.impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\programming\fix4j\fix4j\src\main\java\org\fix4j\impl" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="org.fixb.meta" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.fix4j" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.NativeSerializerPerfTest">
+    <configuration default="false" name="All in fixb" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="fixb" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="All in fixb-quickfix" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="fixb-quickfix" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="FixMetaScannerTest.canFindAndLoadFixClassesInAPackage" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="fixb" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.fixb.meta" />
+      <option name="MAIN_CLASS_NAME" value="org.fixb.meta.FixMetaScannerTest" />
+      <option name="METHOD_NAME" value="canFindAndLoadFixClassesInAPackage" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="NativeFixFieldExtractor" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.fixb.impl.NativeFixFieldExtractor" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="fixb" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="NativeSerializerPerfTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="fixb-perf-test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.fixb.test.perf" />
+      <option name="MAIN_CLASS_NAME" value="org.fixb.test.perf.NativeSerializerPerfTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.All in fixb" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.All in fixb-quickfix" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.FixMetaScannerTest.canFindAndLoadFixClassesInAPackage" />
+      <item index="3" class="java.lang.String" itemvalue="Application.NativeFixFieldExtractor" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.NativeSerializerPerfTest" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.NativeSerializerPerfTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in fixb-quickfix" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.All in fixb" />
+        <item index="3" class="java.lang.String" itemvalue="Application.NativeFixFieldExtractor" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.FixMetaScannerTest.canFindAndLoadFixClassesInAPackage" />
+      </list>
+    </recent_temporary>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <changelist date="1382839048087">
+      <option name="PATH" value="$USER_HOME$/Library/Preferences/IdeaIC12/shelf/updated_readme_and_pom_version.patch" />
+      <option name="DESCRIPTION" value="updated readme and pom version" />
+    </changelist>
+  </component>
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a38dc94f-716d-4e49-9bc2-77fc2ad0773d" name="Default" comment="" />
+      <created>1363976481844</created>
+      <updated>1363976481844</updated>
+    </task>
+    <task id="LOCAL-00001" summary="java 6.0 compatibility">
+      <created>1381691435357</created>
+      <updated>1381691435357</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1) more java 6.0 compatibility, 2) compilation warnings cleanup">
+      <created>1381692549677</created>
+      <updated>1381692549677</updated>
+    </task>
+    <task id="LOCAL-00003" summary="code cleanup">
+      <created>1381693460301</created>
+      <updated>1381693460301</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed native message builder: 1) adding body length tag, 2) begin string mandatory">
+      <created>1381696996317</created>
+      <updated>1381696996317</updated>
+    </task>
+    <task id="LOCAL-00005" summary="updated README">
+      <created>1381697037129</created>
+      <updated>1381697037129</updated>
+    </task>
+    <task id="LOCAL-00006" summary="updated README">
+      <created>1381697271881</created>
+      <updated>1381697271881</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updated javadoc">
+      <created>1382046497919</created>
+      <updated>1382046497919</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated README (new project name)">
+      <created>1382046653379</created>
+      <updated>1382046653379</updated>
+    </task>
+    <task id="LOCAL-00009" summary="updated README">
+      <created>1382049006354</created>
+      <updated>1382049006354</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated README">
+      <created>1382049059350</created>
+      <updated>1382049059350</updated>
+    </task>
+    <task id="LOCAL-00011" summary="more renaming to fixb">
+      <created>1382127610065</created>
+      <updated>1382127610065</updated>
+    </task>
+    <task id="LOCAL-00012" summary="minor enhancements">
+      <created>1382304832142</created>
+      <updated>1382304832142</updated>
+    </task>
+    <task id="LOCAL-00013" summary="updated README">
+      <created>1382304871201</created>
+      <updated>1382304871201</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated README">
+      <created>1382304991009</created>
+      <updated>1382304991009</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated README">
+      <created>1382305030864</created>
+      <updated>1382305030864</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated README">
+      <created>1382305064364</created>
+      <updated>1382305064364</updated>
+    </task>
+    <task id="LOCAL-00017" summary="updated README">
+      <created>1382306021596</created>
+      <updated>1382306021596</updated>
+    </task>
+    <task id="LOCAL-00018" summary="moved javadoc to interface">
+      <created>1382306317410</created>
+      <updated>1382306317410</updated>
+    </task>
+    <task id="LOCAL-00019" summary="1) Added support for FIX bindings for enums,&#10;2) Added support for joda time types in native implementation">
+      <created>1382478779951</created>
+      <updated>1382478779951</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fixed some compiler warnings">
+      <created>1382479564902</created>
+      <updated>1382479564902</updated>
+    </task>
+    <task id="LOCAL-00021" summary="mentioning about usefulness for non-standard FIX messages">
+      <created>1382479821573</created>
+      <updated>1382479821573</updated>
+    </task>
+    <task id="LOCAL-00022" summary="1) FixMetaRepository -&gt; FixMetaDictionary&#10;2) FixMetaDictionary provides only read methods &#10;3) Packages are scanned by FixMetaScanner">
+      <created>1382562265456</created>
+      <updated>1382562265456</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1) FixMetaRepository -&gt; FixMetaDictionary&#10;2) FixMetaDictionary provides only read methods &#10;3) Packages are scanned by FixMetaScanner">
+      <created>1382562336870</created>
+      <updated>1382562336870</updated>
+    </task>
+    <task id="LOCAL-00024" summary="1) FixMetaRepository -&gt; FixMetaDictionary&#10;2) FixMetaDictionary provides only read methods &#10;3) Packages are scanned by FixMetaScanner">
+      <created>1382562382867</created>
+      <updated>1382562382867</updated>
+    </task>
+    <task id="LOCAL-00025" summary="better and more efficient date/time handling">
+      <created>1382742823034</created>
+      <updated>1382742823034</updated>
+    </task>
+    <task id="LOCAL-00026" summary="readme note about jodatime">
+      <created>1382743330789</created>
+      <updated>1382743330797</updated>
+    </task>
+    <task id="LOCAL-00027" summary="code cleanup">
+      <created>1382778043688</created>
+      <updated>1382778043688</updated>
+    </task>
+    <task id="LOCAL-00028" summary="javadoc improved">
+      <created>1382778854540</created>
+      <updated>1382778854540</updated>
+    </task>
+    <task id="LOCAL-00029" summary="enhanced javadoc">
+      <created>1382827027912</created>
+      <updated>1382827027912</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fixed some compiler warnings">
+      <created>1382827176877</created>
+      <updated>1382827176877</updated>
+    </task>
+    <task id="LOCAL-00031" summary="updated readme">
+      <created>1382829232852</created>
+      <updated>1382829232852</updated>
+    </task>
+    <task id="LOCAL-00032" summary="updated readme and pom version">
+      <created>1382839048438</created>
+      <updated>1382839048438</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1440" height="874" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32891247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2254642" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575598" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891247" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20424403" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32352942" sideWeight="0.3050398" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23242468" sideWeight="0.6710875" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32352942" sideWeight="0.36604774" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.124668434" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme and pom version" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="java 6.0 compatibility" />
+    <MESSAGE value="1) more java 6.0 compatibility, 2) compilation warnings cleanup" />
+    <MESSAGE value="fixed native message builder: 1) adding body length tag, 2) begin string mandatory" />
+    <MESSAGE value="updated javadoc" />
+    <MESSAGE value="updated README (new project name)" />
+    <MESSAGE value="more renaming to fixb" />
+    <MESSAGE value="minor enhancements" />
+    <MESSAGE value="updated README" />
+    <MESSAGE value="moved javadoc to interface" />
+    <MESSAGE value="1) Added support for FIX bindings for enums,&#10;2) Added support for joda time types in native implementation" />
+    <MESSAGE value="mentioning about usefulness for non-standard FIX messages" />
+    <MESSAGE value="1) FixMetaRepository -&gt; FixMetaDictionary&#10;2) FixMetaDictionary provides only read methods &#10;3) Packages are scanned by FixMetaScanner" />
+    <MESSAGE value="better and more efficient date/time handling" />
+    <MESSAGE value="readme note about jodatime" />
+    <MESSAGE value="code cleanup" />
+    <MESSAGE value="javadoc improved" />
+    <MESSAGE value="enhanced javadoc" />
+    <MESSAGE value="fixed some compiler warnings" />
+    <MESSAGE value="updated readme" />
+    <MESSAGE value="updated readme and pom version" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="4" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixFieldExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="103" selection-start="786" selection-end="786" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixMessageBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="37" selection-start="819" selection-end="819" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/FixSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="87" selection-start="704" selection-end="704" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixFieldMapBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="910" selection-end="1013" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixMessageBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="3" selection-start="973" selection-end="973" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="75" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-perf-test/src/main/java/org/fixb/test/perf/NativeSerializerPerfTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="12" selection-start="2409" selection-end="2409" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-perf-test/src/main/java/org/fixb/test/perf/TestModels.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="33" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/meta/FixEnumMeta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="43" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb/src/main/java/org/fixb/impl/CollectionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="32" selection-start="1110" selection-end="1110" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/QuickFixFieldExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="75" selection-start="3865" selection-end="3865" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-quickfix/src/main/java/org/fixb/quickfix/FixMetaDataDictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="20" selection-start="3821" selection-end="3821" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="20" selection-start="800" selection-end="800" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="979" selection-end="1015" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixb-quickfix/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1280" selection-end="1280" vertical-scroll-proportion="0.9665871">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>fixb-quickfix</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.google.guava:guava:11.0.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+
