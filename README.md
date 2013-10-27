@@ -18,7 +18,31 @@ Features include:
 * Repeating groups binding directly to java collections
 * Optional QuickFIX/J adapter (fixb-quickfix)
 
-Example (tags are fictitious):
+Usage
+-----
+
+To include FixB into a maven project add the following repository in your settings.xml pom.xml:
+```xml
+<repository>
+    <id>fixb-repo</id>
+    <url>http://raw.github.com/YTEQ/fixb/mvn-repo/</url>
+    <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+    </snapshots>
+</repository>
+```
+
+And add the following dependency in your pom.xml (check for the latest version):
+```xml
+<dependency>
+    <groupId>org.fixb</groupId>
+    <artifactId>fixb</artifactId>
+    <version>1.0b</version>
+</dependency>
+```
+
+### Annotations example (tags are fictitious):
 ```java
 @FixMessage(type = "Q")
 public class FxQuote extends BaseQuote {
@@ -79,14 +103,12 @@ public class FxQuote extends BaseQuote {
 
 To start serializing your POJOs into FIX messages and vice versa it's enough to create an instance of a FixSerializer as
 below:
-
 ```java
 FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("my.fix.classes.package");
 FixSerializer<Object> fixSerializer = new NativeFixSerializer<>("FIX.5.0", fixMetaDictionary);
 ```
 
 And actually using the created FixSerializer:
-
 ```java
 FxQuote fxQuote = new FxQuote(...);
 
