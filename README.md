@@ -38,7 +38,7 @@ And add the following dependency in your pom.xml (check for the latest version):
 <dependency>
     <groupId>org.fixb</groupId>
     <artifactId>fixb</artifactId>
-    <version>1.0b</version>
+    <version>1.0-beta</version>
 </dependency>
 ```
 
