@@ -22,18 +22,18 @@
 
     <groupId>org.fixb</groupId>
     <artifactId>fixb-perf-test</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0-beta-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>org.fixb</groupId>
             <artifactId>fixb</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>1.0-beta-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.fixb</groupId>
             <artifactId>fixb-quickfix</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>1.0-beta-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -42,5 +42,4 @@
         </dependency>
     </dependencies>
 
-    
 </project>
