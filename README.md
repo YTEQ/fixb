@@ -21,7 +21,7 @@ Features include:
 Usage
 -----
 
-To include FixB into a maven project add the following repository in your settings.xml pom.xml:
+To include FixB into a maven project add the following repository in your settings.xml or pom.xml:
 ```xml
 <repository>
     <id>fixb-repo</id>
