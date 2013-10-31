@@ -32,7 +32,7 @@ import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
 
 public class AbstractFixAdapterTest {
-    final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.test");
+    final FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("org.fixb.test");
     final FixFieldExtractor<Map<Integer, Object>> fixFieldExtractor = mock(FixFieldExtractor.class);
     final FixMessageBuilder<Map<Integer, Object>> fixMessageBuilder = mock(FixMessageBuilder.class);
     final FixMessageBuilder.Factory<Map<Integer, Object>, FixMessageBuilder<Map<Integer, Object>>>

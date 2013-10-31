@@ -31,11 +31,11 @@ import static org.fixb.quickfix.QuickFixMessageBuilder.fixMessage;
 import static org.fixb.quickfix.test.data.TestModels.*;
 
 public class CommonFixAdapterWithQuickFixTest {
-    private final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.quickfix.test.data");
+    private final FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("org.fixb.quickfix.test.data");
     private final FixAdapter<Object, Message> adapter = new CommonFixAdapter<>("FIX.5.0",
             new QuickFixFieldExtractor(),
             new QuickFixMessageBuilder.Factory(),
-            fixMetaRepository);
+            fixMetaDictionary);
 
     @Test
     public void testToFix() throws Exception {
@@ -53,7 +53,7 @@ public class CommonFixAdapterWithQuickFixTest {
         assertEquals("M2", fixMessage2.getHeader().getString(MSG_TYPE_TAG));
         assertEquals("TEST2", fixMessage2.getString(100));
 
-        fixMessage1.fromString(fixMessage1.toString(), new FixMetaDataDictionary("FIX.5.0", fixMetaRepository), true);
+        fixMessage1.fromString(fixMessage1.toString(), new FixMetaDataDictionary("FIX.5.0", fixMetaDictionary), true);
     }
 
     @Test

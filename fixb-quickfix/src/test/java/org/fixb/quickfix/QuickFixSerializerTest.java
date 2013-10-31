@@ -36,9 +36,9 @@ import static org.fixb.quickfix.test.data.TestModels.QuoteFixFields;
 
 public class QuickFixSerializerTest {
 
-    private static final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb");
+    private static final FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("org.fixb");
 
-    private final FixSerializer<Message> serializer = new QuickFixSerializer("FIX.5.0", fixMetaRepository);
+    private final FixSerializer<Message> serializer = new QuickFixSerializer("FIX.5.0", fixMetaDictionary);
 
     @Test
     public void testSerialize() {
@@ -83,7 +83,7 @@ public class QuickFixSerializerTest {
 
         // When
         quickfix.Message tmpMessage = new Message();
-        tmpMessage.fromString(fixString, new FixMetaDataDictionary("FIX.5.0", fixMetaRepository), true);
+        tmpMessage.fromString(fixString, new FixMetaDataDictionary("FIX.5.0", fixMetaDictionary), true);
 
         // Then
         assertEquals(fixMessage.toString(), tmpMessage.toString());

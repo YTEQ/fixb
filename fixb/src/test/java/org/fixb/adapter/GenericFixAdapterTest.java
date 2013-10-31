@@ -28,7 +28,7 @@ import static org.fixb.test.data.TestModels.Message1;
 public class GenericFixAdapterTest extends AbstractFixAdapterTest {
     final GenericFixAdapter<Message1, Map<Integer, Object>> adapter =
             new GenericFixAdapter<Message1, Map<Integer, Object>>("FIX.4.4",
-                    fixFieldExtractor, builderFactory, fixMetaRepository.getMetaForClass(Message1.class)
+                    fixFieldExtractor, builderFactory, fixMetaDictionary.getMetaForClass(Message1.class)
             );
 
     @Test

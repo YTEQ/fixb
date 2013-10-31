@@ -32,8 +32,8 @@ import quickfix.Message;
 public class QuickFixSerializer implements FixSerializer<Message> {
     private final DataDictionary dataDictionary;
 
-    public QuickFixSerializer(final String fixVersion, FixMetaDictionary fixMetaRepository) {
-        this.dataDictionary = initDataDictionary(fixVersion, fixMetaRepository);
+    public QuickFixSerializer(final String fixVersion, FixMetaDictionary fixMetaDictionary) {
+        this.dataDictionary = initDataDictionary(fixVersion, fixMetaDictionary);
     }
 
     @Override
@@ -41,9 +41,9 @@ public class QuickFixSerializer implements FixSerializer<Message> {
         return message.toString();
     }
 
-    private DataDictionary initDataDictionary(final String fixVersion, FixMetaDictionary fixMetaRepository) {
+    private DataDictionary initDataDictionary(final String fixVersion, FixMetaDictionary fixMetaDictionary) {
         try {
-            return new FixMetaDataDictionary(fixVersion, fixMetaRepository);
+            return new FixMetaDataDictionary(fixVersion, fixMetaDictionary);
         } catch (ConfigError e) {
             throw new RuntimeException("Error loading FIX data dictionary: " + e.getMessage(), e);
         }

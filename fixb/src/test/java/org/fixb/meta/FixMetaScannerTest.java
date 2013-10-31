@@ -27,24 +27,24 @@ public class FixMetaScannerTest {
     @Test
     public void canFindAndLoadFixClassesInAPackage() {
         // When
-        final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.test.data");
+        final FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("org.fixb.test.data");
 
         // Then
-        assertNotNull(fixMetaRepository.getMetaForMessageType("Q"));
-        assertNotNull(fixMetaRepository.getMetaForMessageType("M1"));
-        assertNotNull(fixMetaRepository.getMetaForMessageType("M2"));
-        assertNotNull(fixMetaRepository.getMetaForClass(SampleQuote.class));
-        assertNotNull(fixMetaRepository.getMetaForClass(TestModels.Message1.class));
-        assertNotNull(fixMetaRepository.getMetaForClass(TestModels.Message2.class));
+        assertNotNull(fixMetaDictionary.getMetaForMessageType("Q"));
+        assertNotNull(fixMetaDictionary.getMetaForMessageType("M1"));
+        assertNotNull(fixMetaDictionary.getMetaForMessageType("M2"));
+        assertNotNull(fixMetaDictionary.getMetaForClass(SampleQuote.class));
+        assertNotNull(fixMetaDictionary.getMetaForClass(TestModels.Message1.class));
+        assertNotNull(fixMetaDictionary.getMetaForClass(TestModels.Message2.class));
     }
 
     @Test
     public void testScanClass() {
         // Given
-        final MutableFixMetaDictionary fixMetaRepository = new MutableFixMetaDictionary();
+        final MutableFixMetaDictionary fixMetaDictionary = new MutableFixMetaDictionary();
 
         // When
-        final FixBlockMeta<SampleQuote> meta = FixMetaScanner.scanClassAndAddToRepository(SampleQuote.class, fixMetaRepository);
+        final FixBlockMeta<SampleQuote> meta = FixMetaScanner.scanClassAndAddToDictionary(SampleQuote.class, fixMetaDictionary);
 
         // Then
         assertEquals(SampleQuote.class, meta.getType());
@@ -63,8 +63,9 @@ public class FixMetaScannerTest {
         assertEquals(20, meta.getFields().get(8).getTag());
         assertEquals(21, meta.getFields().get(9).getTag());
         assertEquals(22, meta.getFields().get(10).getTag());
-        // Meta is stored in the provided repository
-        assertSame(meta, fixMetaRepository.getMetaForClass(SampleQuote.class));
+
+        // Meta is stored in the provided dictionary
+        assertSame(meta, fixMetaDictionary.getMetaForClass(SampleQuote.class));
     }
 
 }

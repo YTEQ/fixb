@@ -76,13 +76,13 @@ public class FixMetaDataDictionary extends DataDictionary {
 
     private static final Map<Integer, String> TRAILER_FIELDS = ImmutableMap.of(10, "CheckSum");
 
-    public FixMetaDataDictionary(final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) throws ConfigError {
-        super(generateDictionaryXml(fixProtocolVersion, fixMetaRepository));
+    public FixMetaDataDictionary(final String fixProtocolVersion, FixMetaDictionary fixMetaDictionary) throws ConfigError {
+        super(generateDictionaryXml(fixProtocolVersion, fixMetaDictionary));
         setCheckFieldsOutOfOrder(false);
         setCheckUnorderedGroupFields(false);
     }
 
-    private static InputStream generateDictionaryXml(final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) {
+    private static InputStream generateDictionaryXml(final String fixProtocolVersion, FixMetaDictionary fixMetaDictionary) {
         final Map<FixFieldMeta, String> fields = new LinkedHashMap<>();
         final Map<Integer, String> fieldNames = new LinkedHashMap<>();
         final XMLOutputFactory factory = XMLOutputFactory.newInstance();
@@ -100,13 +100,13 @@ public class FixMetaDataDictionary extends DataDictionary {
             writeHeader(writer, fixProtocolVersion, null);
 
             writer.writeStartElement(MESSAGES);
-            for (FixMessageMeta<?> message : fixMetaRepository.getAllMessageMetas()) {
+            for (FixMessageMeta<?> message : fixMetaDictionary.getAllMessageMetas()) {
                 writeMessageXml(writer, message, fields, fieldNames);
             }
             writer.writeEndElement();
 
             writer.writeStartElement(COMPONENTS);
-            for (FixMessageMeta<?> message : fixMetaRepository.getAllMessageMetas()) {
+            for (FixMessageMeta<?> message : fixMetaDictionary.getAllMessageMetas()) {
                 writeComponentXml(writer, message, fields, fieldNames);
             }
             writer.writeEndElement();
@@ -144,7 +144,7 @@ public class FixMetaDataDictionary extends DataDictionary {
         }
     }
 
-    private static void writeHeader(final XMLStreamWriter writer, final String fixProtocolVersion, FixMetaDictionary fixMetaRepository) throws XMLStreamException {
+    private static void writeHeader(final XMLStreamWriter writer, final String fixProtocolVersion, FixMetaDictionary fixMetaDictionary) throws XMLStreamException {
         if (isLessThan50Version(fixProtocolVersion)) {
             writer.writeStartElement(HEADER);
             for (Map.Entry<Integer, String> field : HEADER_FIELDS.entrySet()) {
@@ -153,7 +153,7 @@ public class FixMetaDataDictionary extends DataDictionary {
                 writer.writeAttribute(REQUIRED, YES);
                 writer.writeEndElement();
             }
-            for (FixMessageMeta<?> message : fixMetaRepository.getAllMessageMetas()) {
+            for (FixMessageMeta<?> message : fixMetaDictionary.getAllMessageMetas()) {
                 for (FixFieldMeta field : message.getFields()) {
                     if (field.isHeader() && field.getTag() != MSG_TYPE_TAG) {
                         writer.writeStartElement(FIELD);

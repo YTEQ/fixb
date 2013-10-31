@@ -55,7 +55,7 @@ public final class MutableFixMetaDictionary implements FixMetaDictionary {
     public <T> FixMessageMeta<T> getMetaForMessageType(String fixMessageType) {
         final FixMessageMeta<?> meta = messageMetas.get(fixMessageType);
         if (meta == null) {
-            throw new IllegalStateException("No meta for message type [" + fixMessageType + "] found. Probably it was not added to repository.");
+            throw new IllegalStateException("No meta for message type [" + fixMessageType + "] found. Probably it was not added to dictionary.");
         }
         return (FixMessageMeta<T>) meta;
     }
@@ -121,7 +121,7 @@ public final class MutableFixMetaDictionary implements FixMetaDictionary {
     <T> FixBlockMeta<T> getComponentMeta(Class<T> type) {
         final FixBlockMeta<T> meta = (FixBlockMeta<T>) componentMetas.get(type);
         if (meta == null) {
-            throw new IllegalStateException("No meta for class [" + type + "] found. Probably it was not added to repository.");
+            throw new IllegalStateException("No meta for class [" + type + "] found. Probably it was not added to dictionary.");
         }
         return meta;
     }

@@ -29,7 +29,7 @@ import org.fixb.meta.FixMetaDictionary;
  * @see AbstractMetaFixAdapter
  */
 public class CommonFixAdapter<M> extends AbstractMetaFixAdapter<Object, M> {
-    private final FixMetaDictionary fixMetaRepository;
+    private final FixMetaDictionary fixMetaDictionary;
 
     /**
      * @param protocolVersion   a FIX protocol version to use in the generated messages, e.g. "FIX.5.0"
@@ -37,23 +37,23 @@ public class CommonFixAdapter<M> extends AbstractMetaFixAdapter<Object, M> {
      *                          and groups from FIX messages represented by type <tt>M</tt>
      * @param fixMessageBuilder a specific FixMessageBuilder used to build FIX objects of type
      *                          <tt>M</tt> from single FIX fields and groups
-     * @param fixMetaRepository a FIX mapping meta repository
+     * @param fixMetaDictionary a FIX bindings meta dictionary
      */
     public CommonFixAdapter(String protocolVersion,
                             FixFieldExtractor<M> fixFieldExtractor,
                             FixMessageBuilder.Factory<M, ? extends FixMessageBuilder<M>> fixMessageBuilder,
-                            FixMetaDictionary fixMetaRepository) {
+                            FixMetaDictionary fixMetaDictionary) {
         super(protocolVersion, fixFieldExtractor, fixMessageBuilder);
-        this.fixMetaRepository = fixMetaRepository;
+        this.fixMetaDictionary = fixMetaDictionary;
     }
 
     @Override
     protected FixMessageMeta<Object> getFixMetaForMessageType(final String fixMessageType) {
-        return fixMetaRepository.getMetaForMessageType(fixMessageType);
+        return fixMetaDictionary.getMetaForMessageType(fixMessageType);
     }
 
     @Override
     protected FixMessageMeta<Object> getFixMetaForClass(final Class<Object> type) {
-        return fixMetaRepository.getMetaForClass(type);
+        return fixMetaDictionary.getMetaForClass(type);
     }
 }

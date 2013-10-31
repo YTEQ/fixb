@@ -29,34 +29,34 @@ import static org.fixb.meta.MutableFixMetaDictionaryTest.Sample.Part;
 
 public class MutableFixMetaDictionaryTest {
 
-    private MutableFixMetaDictionary fixMetaRepository = new MutableFixMetaDictionary();
+    private MutableFixMetaDictionary fixMetaDictionary = new MutableFixMetaDictionary();
 
     @Test
     public void testGetMetaForUnregisteredClassRegistersMessageType() {
         // When
-        final FixMessageMeta<Sample> meta = fixMetaRepository.getMetaForClass(Sample.class);
+        final FixMessageMeta<Sample> meta = fixMetaDictionary.getMetaForClass(Sample.class);
 
         // Then
-        assertSame(meta, fixMetaRepository.getMetaForMessageType("TEST"));
+        assertSame(meta, fixMetaDictionary.getMetaForMessageType("TEST"));
     }
 
     @Test
     public void testGetMetaForRegisteredClassReturnsPreloadedMeta() {
         // Given
-        final FixMessageMeta<Sample> meta = fixMetaRepository.getMetaForClass(Sample.class);
+        final FixMessageMeta<Sample> meta = fixMetaDictionary.getMetaForClass(Sample.class);
 
         // When / Then
-        assertSame(meta, fixMetaRepository.getMetaForClass(Sample.class));
+        assertSame(meta, fixMetaDictionary.getMetaForClass(Sample.class));
     }
 
     @Test(expected = IllegalStateException.class)
     public void testGetMetaForFixBlockClassThrowsException() {
         // Given
-        fixMetaRepository.getMetaForClass(Sample.class);
-        assertTrue(fixMetaRepository.containsMeta(Part.class));
+        fixMetaDictionary.getMetaForClass(Sample.class);
+        assertTrue(fixMetaDictionary.containsMeta(Part.class));
 
         // When
-        fixMetaRepository.getMetaForClass(Part.class);
+        fixMetaDictionary.getMetaForClass(Part.class);
 
         // Then
         // expect IllegalStateException
@@ -65,10 +65,10 @@ public class MutableFixMetaDictionaryTest {
     @Test(expected = IllegalStateException.class)
     public void testGetMetaForUnregisteredMessageType() {
         // Given
-        assertFalse(fixMetaRepository.containsMeta("TEST"));
+        assertFalse(fixMetaDictionary.containsMeta("TEST"));
 
         // When
-        fixMetaRepository.getMetaForMessageType("TEST");
+        fixMetaDictionary.getMetaForMessageType("TEST");
 
         // Then
         // expect IllegalStateException
@@ -77,10 +77,10 @@ public class MutableFixMetaDictionaryTest {
     @Test
     public void testGetMetaForRegisteredMessageType() {
         // Given
-        fixMetaRepository.getMetaForClass(Sample.class);
+        fixMetaDictionary.getMetaForClass(Sample.class);
 
         // When
-        final FixMessageMeta<Sample> meta = fixMetaRepository.getMetaForMessageType("TEST");
+        final FixMessageMeta<Sample> meta = fixMetaDictionary.getMetaForMessageType("TEST");
 
         // Then
         assertEquals(Sample.class, meta.getType());

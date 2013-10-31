@@ -26,7 +26,7 @@ import static org.fixb.test.data.TestModels.*;
 
 public class CommonFixAdapterTest extends AbstractFixAdapterTest {
     final CommonFixAdapter<Map<Integer, Object>> adapter =
-            new CommonFixAdapter<>("FIX.4.4", fixFieldExtractor, builderFactory, fixMetaRepository);
+            new CommonFixAdapter<>("FIX.4.4", fixFieldExtractor, builderFactory, fixMetaDictionary);
 
     @Test
     public void testFromFixToMessage1() {

@@ -44,11 +44,11 @@ import static org.fixb.test.perf.TestModels.SampleQuote.Side.SELL;
 public class NativeSerializerPerfTest {
 
     public static final String FIX_5_0 = "FIX.5.0";
-    private final FixMetaDictionary fixMetaRepository = FixMetaScanner.scanClassesIn("org.fixb.test.perf");
-    private final FixSerializer<Object> nativeSerializer = new NativeFixSerializer<>(FIX_5_0, fixMetaRepository);
-    private final FixSerializer<Message> quickFixSerializer = new QuickFixSerializer(FIX_5_0, fixMetaRepository);
+    private final FixMetaDictionary fixMetaDictionary = FixMetaScanner.scanClassesIn("org.fixb.test.perf");
+    private final FixSerializer<Object> nativeSerializer = new NativeFixSerializer<>(FIX_5_0, fixMetaDictionary);
+    private final FixSerializer<Message> quickFixSerializer = new QuickFixSerializer(FIX_5_0, fixMetaDictionary);
     private final CommonFixAdapter<Message> quickFixAdapter = new CommonFixAdapter<>(FIX_5_0,
-            new QuickFixFieldExtractor(), new QuickFixMessageBuilder.Factory(), fixMetaRepository);
+            new QuickFixFieldExtractor(), new QuickFixMessageBuilder.Factory(), fixMetaDictionary);
 
     @Test
     public void run() {

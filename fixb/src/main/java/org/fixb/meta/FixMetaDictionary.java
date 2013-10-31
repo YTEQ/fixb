@@ -31,7 +31,7 @@ public interface FixMetaDictionary extends FixEnumDictionary {
     Collection<FixMessageMeta<?>> getAllMessageMetas();
 
     /**
-     * @return a FixMessageMeta for the given class. If meta has not been previously registered with this repository
+     * @return a FixMessageMeta for the given class. If meta has not been previously registered with this dictionary
      *         it will be collected from the given class definition using {@link FixMetaScanner}.
      * @throws IllegalStateException if no meta instance found.
      * @see FixMetaScanner

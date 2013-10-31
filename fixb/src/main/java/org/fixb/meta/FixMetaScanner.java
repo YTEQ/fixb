@@ -50,26 +50,26 @@ import static org.fixb.meta.FixFieldMeta.fixGroupMeta;
 public class FixMetaScanner {
 
     /**
-     * Scans the given packages for classes annotated with @FixMessage and @FixEnum and adds them to the resulting repository.
+     * Scans the given packages for classes annotated with @FixMessage and @FixEnum and adds them to the resulting dictionary.
      *
      * @param packageNames a name of the package containing FIX mapped classes
      */
     public static FixMetaDictionary scanClassesIn(String... packageNames) {
-        final MutableFixMetaDictionary repository = new MutableFixMetaDictionary();
+        final MutableFixMetaDictionary dictionary = new MutableFixMetaDictionary();
         for (String packageName : packageNames) {
             try {
                 for (Class<?> type : getClasses(packageName)) {
                     if (type.isEnum()) {
-                        repository.addMeta(FixEnumMeta.forClass((Class<? extends Enum>) type));
+                        dictionary.addMeta(FixEnumMeta.forClass((Class<? extends Enum>) type));
                     } else {
-                        repository.addMeta(scanClass(type, repository));
+                        dictionary.addMeta(scanClass(type, dictionary));
                     }
                 }
             } catch (Exception e) {
                 throw new IllegalStateException("Error registering classes in package " + packageName + ": " + e.getMessage(), e);
             }
         }
-        return repository;
+        return dictionary;
     }
 
     /**
@@ -81,24 +81,22 @@ public class FixMetaScanner {
      * @throws FixException if the given class is not properly annotated.
      */
     public static <T> FixBlockMeta<T> scanClass(Class<T> model) {
-        return scanClassAndAddToRepository(model, new MutableFixMetaDictionary());
+        return scanClassAndAddToDictionary(model, new MutableFixMetaDictionary());
     }
 
-    static <T> FixBlockMeta<T> scanClassAndAddToRepository(Class<T> model, MutableFixMetaDictionary repository) {
-        Preconditions.checkNotNull(model, "model");
-        Preconditions.checkNotNull(model, "repository");
-        if (repository.containsMeta(model)) {
-            return repository.getComponentMeta(model);
+    static <T> FixBlockMeta<T> scanClassAndAddToDictionary(Class<T> model, MutableFixMetaDictionary fixMetaDictionary) {
+        if (fixMetaDictionary.containsMeta(model)) {
+            return fixMetaDictionary.getComponentMeta(model);
         }
 
-        final FixBlockMeta<T> result = scanClass(model, repository);
-        repository.addMeta(result);
+        final FixBlockMeta<T> result = scanClass(model, fixMetaDictionary);
+        fixMetaDictionary.addMeta(result);
         return result;
     }
 
-    static <T> FixBlockMeta<T> scanClass(Class<T> model, MutableFixMetaDictionary repository) {
-        if (repository.containsMeta(model)) {
-            return repository.getComponentMeta(model);
+    static <T> FixBlockMeta<T> scanClass(Class<T> model, MutableFixMetaDictionary dictionary) {
+        if (dictionary.containsMeta(model)) {
+            return dictionary.getComponentMeta(model);
         }
 
         final FixBlockMeta<T> result;
@@ -122,10 +120,10 @@ public class FixMetaScanner {
             final FixMessage messageAnnotation = model.getAnnotation(FixMessage.class);
             ImmutableList.Builder<FixFieldMeta> allFieldsBuilder = ImmutableList.builder();
             allFieldsBuilder.addAll(processConstantFields(messageAnnotation)); // add constant fields
-            allFieldsBuilder.addAll(processFields(model, constructor, repository)); // add all other fields
+            allFieldsBuilder.addAll(processFields(model, constructor, dictionary)); // add all other fields
             result = new FixMessageMeta<>(model, messageAnnotation.type(), allFieldsBuilder.build(), constructor.isPresent());
         } else if (model.isAnnotationPresent(FixBlock.class)) {
-            final List<FixFieldMeta> fixFields = processFields(model, constructor, repository);
+            final List<FixFieldMeta> fixFields = processFields(model, constructor, dictionary);
             result = new FixBlockMeta<>(model, fixFields, constructor.isPresent());
         } else {
             throw new FixException("Neither @FixBlock nor @FixMessage annotation present on class [" + model.getName() + "].");
@@ -196,12 +194,12 @@ public class FixMetaScanner {
 
     private static <T> List<FixFieldMeta> processFields(final Class<T> model,
                                                         final Optional<Constructor<T>> constructor,
-                                                        final MutableFixMetaDictionary repository) {
-        final ImmutableMap<Integer, FixFieldMeta> fixFields = scanFields(model, repository);
+                                                        final MutableFixMetaDictionary dictionary) {
+        final ImmutableMap<Integer, FixFieldMeta> fixFields = scanFields(model, dictionary);
 
         if (constructor.isPresent()) {
             final FixFieldMeta[] orderedFixFields = new FixFieldMeta[fixFields.size()];
-            orderFixFields(constructor.get(), fixFields, orderedFixFields, repository, 0);
+            orderFixFields(constructor.get(), fixFields, orderedFixFields, dictionary, 0);
             return asList(orderedFixFields);
         } else {
             return new ArrayList<>(fixFields.values());
@@ -211,13 +209,13 @@ public class FixMetaScanner {
     private static int orderFixFields(Constructor<?> constructor,
                                       ImmutableMap<Integer, FixFieldMeta> fixFields,
                                       FixFieldMeta[] ordered,
-                                      MutableFixMetaDictionary repository,
+                                      MutableFixMetaDictionary dictionary,
                                       int offset) {
         final Annotation[][] annotations = constructor.getParameterAnnotations();
         for (int i = 0; i < annotations.length; i++) {
             if (hasFixAnnotation(annotations[i], FixBlock.class)) {
                 final Class<?>[] paramTypes = constructor.getParameterTypes();
-                for (FixFieldMeta fixFieldMeta : repository.getComponentMeta(paramTypes[i]).getFields()) {
+                for (FixFieldMeta fixFieldMeta : dictionary.getComponentMeta(paramTypes[i]).getFields()) {
                     ordered[offset++] = fixFields.get(fixFieldMeta.getTag());
                 }
             } else {
@@ -266,7 +264,7 @@ public class FixMetaScanner {
     }
 
     private static <T> ImmutableMap<Integer, FixFieldMeta> scanFields(final Class<T> model,
-                                                                      final MutableFixMetaDictionary repository,
+                                                                      final MutableFixMetaDictionary dictionary,
                                                                       final Field... parentPath) {
         Map<Integer, FixFieldMeta> fixFields = Maps.newLinkedHashMap();
 
@@ -284,7 +282,7 @@ public class FixMetaScanner {
                     fixFields.put(tag, fixFieldMeta(tag, fixField.header(), fixField.optional(), path));
 
                 } else if (FixBlock.class == annotation.annotationType()) {
-                    for (FixFieldMeta fixFieldMeta : scanClassAndAddToRepository(type, repository).getFields()) {
+                    for (FixFieldMeta fixFieldMeta : scanClassAndAddToDictionary(type, dictionary).getFields()) {
                         Field[] fieldPath = ((FixDynamicFieldMeta) fixFieldMeta).getPath();
                         Field[] newFieldPath = Arrays.copyOf(path, path.length + fieldPath.length);
                         for (int i = path.length; i < newFieldPath.length; i++) {
@@ -311,7 +309,7 @@ public class FixMetaScanner {
                                     fixGroupMeta(fixGroup.tag(),
                                             fixGroup.header(),
                                             fixGroup.optional(),
-                                            repository.getOrCreateComponentMeta(componentType),
+                                            dictionary.getOrCreateComponentMeta(componentType),
                                             path);
                             fixFields.put(fixGroup.tag(), fieldMeta);
                         }
@@ -325,7 +323,7 @@ public class FixMetaScanner {
 
         final Class<? super T> superclass = model.getSuperclass();
         if (superclass != null && superclass != Object.class) {
-            fixFields.putAll(scanFields(superclass, repository));
+            fixFields.putAll(scanFields(superclass, dictionary));
         }
 
         return ImmutableMap.copyOf(fixFields);

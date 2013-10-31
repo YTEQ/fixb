@@ -16,7 +16,7 @@ public interface FixEnumDictionary {
 
     /**
      * @param enumType the enum type
-     * @return true if there is a meta object for the given enum class in this repository, false otherwise.
+     * @return true if there is a meta object for the given enum class in this dictionary, false otherwise.
      */
     boolean hasFixEnumMeta(Class<?> enumType);
 }

@@ -34,19 +34,20 @@ import static org.fixb.FixConstants.MSG_TYPE_TAG;
 public class NativeFixSerializer<T> implements FixSerializer<T> {
     private final FixAdapter<Object, String> fixAdapter;
     private final NativeFixFieldExtractor extractor;
-    private final FixMetaDictionary fixMetaRepository;
+    private final FixMetaDictionary fixMetaDictionary;
 
     /**
-     * @param protocolVersion a FIX protocol version (used to build a header of the resulting FIX messages)
+     * @param protocolVersion   a FIX protocol version (used to build a header of the resulting FIX messages)
+     * @param fixMetaDictionary a FIX bindings meta dictionary
      */
-    public NativeFixSerializer(String protocolVersion, FixMetaDictionary fixMetaRepository) {
-        this.fixMetaRepository = fixMetaRepository;
-        this.extractor = new NativeFixFieldExtractor(fixMetaRepository);
+    public NativeFixSerializer(String protocolVersion, FixMetaDictionary fixMetaDictionary) {
+        this.fixMetaDictionary = fixMetaDictionary;
+        this.extractor = new NativeFixFieldExtractor(fixMetaDictionary);
         this.fixAdapter = new CommonFixAdapter<>(
                 protocolVersion,
                 extractor,
-                new NativeFixMessageBuilder.Factory(fixMetaRepository),
-                fixMetaRepository);
+                new NativeFixMessageBuilder.Factory(fixMetaDictionary),
+                fixMetaDictionary);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class NativeFixSerializer<T> implements FixSerializer<T> {
         }
 
 
-        FixMessageMeta<Object> meta = fixMetaRepository.getMetaForMessageType(cursor.lastValue());
+        FixMessageMeta<Object> meta = fixMetaDictionary.getMetaForMessageType(cursor.lastValue());
         return (T) extractor.extractFixBlock(cursor, meta);
     }
 }
