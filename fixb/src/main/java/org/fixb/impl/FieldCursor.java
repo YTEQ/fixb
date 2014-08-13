@@ -28,7 +28,7 @@ import static org.fixb.impl.FormatConstants.SOH;
  * @author vladyslav.yatsenko
  */
 public class FieldCursor {
-    private Map<Integer, String> cache = new HashMap<Integer, String>();
+    private Map<Integer, String> buffer = new HashMap<Integer, String>();
     private int lastPosition = -1;
     private int lastTag;
 
@@ -90,18 +90,18 @@ public class FieldCursor {
      * @return <code>true</code> if the field was found, <code>false</code> if reached the end of message.
      */
     public boolean nextField(int tag) {
-        final String value = cache.get(tag);
+        final String value = buffer.get(tag);
         if (value != null) {
             lastTag = tag;
             lastValue = value;
-            cache.remove(tag);
+            buffer.remove(tag);
             return true;
         } else {
             while (nextField()) {
                 if (lastTag == tag) {
                     return true;
                 } else {
-                    cache.put(lastTag, lastValue);
+                    buffer.put(lastTag, lastValue);
                 }
             }
         }
